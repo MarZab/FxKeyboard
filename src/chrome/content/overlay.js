@@ -1,6 +1,6 @@
 /*
 FxKeyboard
-Version: 2.0
+Version: 2.0.1
 Author:  Marko Zabreznik
 Date:    3 Mar 2012
 Purpose: A virtual keyboard for Firefox
