@@ -1,0 +1,38 @@
+FxKeyboard - A virtual keyboard for Firefox
+==================================================
+
+A handy Firefox virtual keyboard for touchscreen use.
+
+By Marko Zabreznik © since 2008, GPL 3 
+
+![FxKeyboard](/Screenshot.png)
+
+Features
+--------------------------------------
+- Auto-Close
+- Works on XUL (url, search field, etc..)
+- Numbers and Special simbols with capslock
+- Locales
+- Works on Fullscreen
+- DOES NOT WORK WITH PLUGINS (Flash etc.)
+
+
+Settings (via about:config)
+--------------------------------------
+- *extensions.fxkeyboard.keep_open* dissable auto close
+- *extensions.fxkeyboard.repeat_all* make all keys repeat if long pressed
+- *extensions.fxkeyboard.button_height* set the button height
+
+
+Locales
+--------------------------------------
+Currently supported locales
+- en-US
+- de-DE 
+- de-AT
+- sl-SI
+- hr-HR
+
+For missing locales, edit the [en-US](src/chrome/locale/en-US/overlay.xul) version and open a Issue.
+
+

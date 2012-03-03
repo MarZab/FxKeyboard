@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://fxkeyboard/content/overlay.css" type="text/css"?>
+<overlay xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+	<script type="application/x-javascript" src="chrome://fxkeyboard/content/overlay.js"/>
+	<vbox>
+		<hbox collapsed="true" id="fxKeyboardToolbar" flex="1">
+			<vbox flex="1">
+				<vbox flex="1" id="fxKeyboardMainKeys" >
+					<hbox flex="1">
+						<button label="q" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('q')"/>
+						<button label="w" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('w')"/>
+						<button label="e" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('e')"/>
+						<button label="r" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('r')"/>
+						<button label="t" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('t')"/>
+						<button label="z" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('z')"/>
+						<button label="u" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('u')"/>
+						<button label="i" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('i')"/>
+						<button label="o" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('o')"/>
+						<button label="p" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('p')"/>
+						<button label="š" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('š')"/>
+					</hbox>
+					<hbox flex="1">
+						<button label="a" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('a')"/>
+						<button label="s" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('s')"/>
+						<button label="d" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('d')"/>
+						<button label="f" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('f')"/>
+						<button label="g" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('g')"/>
+						<button label="h" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('h')"/>
+						<button label="j" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('j')"/>
+						<button label="k" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('k')"/>
+						<button label="l" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('l')"/>
+						<button label="č" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('č')"/>
+						<button label="ć" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('ć')"/>
+					</hbox>
+					<hbox flex="1">
+						<button label="Dvigalka" flex="2" class="fxKeyboardActionKeys" id="fxKeyboardShift" oncommand="fxKeyboard.doShift()"/>
+						<button label="y" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('y')"/>
+						<button label="x" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('x')"/>
+						<button label="c" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('c')"/>
+						<button label="v" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('v')"/>
+						<button label="b" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('b')"/>
+						<button label="n" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('n')"/>
+						<button label="m" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('m')"/>
+						<button label="đ" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('đ')"/>
+						<button label="ž" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('ž')"/>
+						<button label="&#8592; Vračalka" type="repeat" class="fxKeyboardActionKeys" flex="2" oncommand="fxKeyboard.doSpecialKey(8)"/>
+					</hbox>
+				</vbox>
+				<vbox id="fxKeyboardAltKeys" collapsed="true" >
+					<hbox flex="1">
+						<button label="1" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('1')"/>
+						<button label="2" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('2')"/>
+						<button label="3" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('3')"/>
+						<button label="4" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('4')"/>
+						<button label="5" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('5')"/>
+						<button label="6" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('6')"/>
+						<button label="7" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('7')"/>
+						<button label="8" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('8')"/>
+						<button label="9" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('9')"/>
+						<button label="0" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('0')"/>
+					</hbox>
+					<hbox flex="1">
+						<button label="@" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('@')"/>
+						<button label="#" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('#')"/>
+						<button label="$" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('$')"/>
+						<button label="%" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('%')"/>
+						<button label="&amp;" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('&amp;')"/>
+						<button label="*" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('*')"/>
+						<button label="-" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('-')"/>
+						<button label="+" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('+')"/>
+						<button label="." class="fxKeyboardKey" oncommand="fxKeyboard.doKey('.')"/>
+						<button label="," class="fxKeyboardKey" oncommand="fxKeyboard.doKey(',')"/>
+					</hbox>
+					<hbox flex="1">
+						<button label="Dvigalka" flex="2" class="fxKeyboardActionKeys" oncommand="fxKeyboard.doShift()"/>
+						<button label="!" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('!')"/>
+						<button label="&#34;" class="fxKeyboardKey" oncommand="fxKeyboard.doKey(34)"/>
+						<button label="'" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('\'')"/>
+						<button label=":" class="fxKeyboardKey" oncommand="fxKeyboard.doKey(':')"/>
+						<button label=";" class="fxKeyboardKey" oncommand="fxKeyboard.doKey(';')"/>
+						<button label="&#47;" class="fxKeyboardKey" oncommand="fxKeyboard.doKey(47)"/>
+						<button label="?" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('?')"/>
+						<button label="(" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('(')"/>
+						<button label=")" class="fxKeyboardKey" oncommand="fxKeyboard.doKey(')')"/>
+						<button label="&#8592; Vračalka" type="repeat" class="fxKeyboardActionKeys"  flex="2" oncommand="fxKeyboard.doSpecialKey(8)"/>
+					</hbox>
+				</vbox>
+				<hbox flex="1" id="fxKeyboardBottomRow">
+					<button label="?123" flex="1" class="fxKeyboardActionKeys" id="fxKeyboardAlt" oncommand="fxKeyboard.switchAltKeys()" />
+					<button label="&#10008; Izbriši" flex="1" class="fxKeyboardActionKeys" oncommand="fxKeyboard.doClear()" />
+					<button label="&#160;" flex="5" id="fxKeyboardSpace" oncommand="fxKeyboard.doKey(32)" />
+					<button label="&#10004; Vnesi" class="fxKeyboardActionKeys" flex="1" oncommand="fxKeyboard.doSpecialKey(13)"/>
+				</hbox>
+			</vbox>
+		</hbox>
+	</vbox>
+</overlay>
