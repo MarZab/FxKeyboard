@@ -3,9 +3,9 @@ FxKeyboard - A virtual keyboard for Firefox
 
 A handy Firefox virtual keyboard for touchscreen use.
 
-By Marko Zabreznik © since 2008, GPL 3 
+By Marko Zabreznik Â© since 2008, GPL 3 
 
-![FxKeyboard](/Screenshot.png)
+Firefox Adon url: https://addons.mozilla.org/sl/firefox/addon/fxkeyboard/
 
 Features
 --------------------------------------
@@ -33,6 +33,6 @@ Currently supported locales
 - sl-SI
 - hr-HR
 
-For missing locales, edit the [en-US](src/chrome/locale/en-US/overlay.xul) version and open a Issue.
+For missing locales, edit src/chrome/locale/en-US/overlay.xul and open a Issue.
 
 
