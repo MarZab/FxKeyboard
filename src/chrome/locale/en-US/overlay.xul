@@ -12,7 +12,7 @@
 						<button label="e" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('e')"/>
 						<button label="r" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('r')"/>
 						<button label="t" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('t')"/>
-						<button label="z" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('y')"/>
+						<button label="z" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('z')"/>
 						<button label="u" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('u')"/>
 						<button label="i" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('i')"/>
 						<button label="o" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('o')"/>
