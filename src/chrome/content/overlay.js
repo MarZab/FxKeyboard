@@ -1,6 +1,6 @@
 /*
 FxKeyboard
-Version: 2.0.1
+Version: 2.1.0
 Author:  Marko Zabreznik
 Date:    3 Mar 2012
 Purpose: A virtual keyboard for Firefox
@@ -35,6 +35,7 @@ var fxKeyboard = {
 		this.focus; // current focused element
 		
 		document.addEventListener("focus", this.onFocus,true);
+		document.addEventListener("blur", this.onFocus,true);
 		
 		this.toogleKeepOpen(
 			this.prefs.getBoolPref("extensions.fxkeyboard.keep_open")
@@ -43,18 +44,26 @@ var fxKeyboard = {
 	onFocus: function() {
 		fxKeyboard.focus = document.commandDispatcher.focusedElement;
 		if(!fxKeyboard.focus) fxKeyboard.focus = document.commandDispatcher.focusedWindow.document.activeElement;
-					
-		// auto open/close
-		if (!fxKeyboard.keepOpen) {
-			if (fxKeyboard.focus && (	
-				fxKeyboard.focus.type == 'text' ||
-				fxKeyboard.focus.type == 'textarea' ||
-				fxKeyboard.focus.type == 'email' ||
-				fxKeyboard.focus.type == "password"
-				)
-			)	fxKeyboard.toolbar.collapsed = false;
-			else fxKeyboard.toolbar.collapsed = true;
+		
+		if (fxKeyboard.keepOpen) {
+			fxKeyboard.toolbar.collapsed = false;
+			return;
 		}
+		
+		// auto open/close
+		if (fxKeyboard.focus && (	
+				fxKeyboard.focus.nodeName && fxKeyboard.focus.nodeName.toLowerCase() in {
+					'input':'','select':'',
+					'option':'','textarea':''
+				}
+			||	fxKeyboard.focus.type && fxKeyboard.focus.type.toLowerCase() in {
+					'text':'','password':'','url':'','color':'','date':'','datetime':'',
+					'datetime-local':'','email':'','month':'','number':'','range':'',
+					'search':'','tel':'','time':'','week':''
+				}
+			)
+		)	fxKeyboard.toolbar.collapsed = false;
+		else fxKeyboard.toolbar.collapsed = true;
 	},
 	toogleKeepOpen: function ( keepopened )
 	{
