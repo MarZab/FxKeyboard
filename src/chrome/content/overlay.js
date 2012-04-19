@@ -1,24 +1,24 @@
+"use strict";
 /*
 FxKeyboard
 Version: 2.1.0
 Author:  Marko Zabreznik
-Date:    3 Mar 2012
+Date:    19 Apr 2012
 Purpose: A virtual keyboard for Firefox
 */
 
 window.addEventListener("load", function() { fxKeyboard.startUp(); }, false);
 var fxKeyboard = {
-    startUp: function()
+	startUp: function()
 	{
 		this.prefs = Components.classes["@mozilla.org/preferences-service;1"]  
 			.getService(Components.interfaces.nsIPrefBranch);
-	
-
+		
 		// set button styles
 		var buttonHeight = this.prefs.getCharPref("extensions.fxkeyboard.button_height");
 		var repeatAll = this.prefs.getBoolPref("extensions.fxkeyboard.repeat_all");
 		var buttons = document.getElementById('fxKeyboardToolbar').getElementsByTagName('button');
-		for( b in buttons) {
+		for( var b in buttons) {
 			buttons[b].style.height = buttonHeight;
 			if (repeatAll)
 				buttons[b].type = 'repeat';
@@ -40,7 +40,7 @@ var fxKeyboard = {
 		this.toogleKeepOpen(
 			this.prefs.getBoolPref("extensions.fxkeyboard.keep_open")
 		); // keep open
-    },
+	},
 	onFocus: function() {
 		fxKeyboard.focus = document.commandDispatcher.focusedElement;
 		if(!fxKeyboard.focus) fxKeyboard.focus = document.commandDispatcher.focusedWindow.document.activeElement;
@@ -94,15 +94,14 @@ var fxKeyboard = {
 			this.alt = 2;
 			this.switchAltKeys();
 		}
-
 		var evt = document.createEvent("KeyboardEvent");
 		evt.initKeyEvent("keypress", true, true, null, false, false, false, false, 0, key);
 		this.focus.dispatchEvent(evt);
 	},
 	doSpecialKey: function ( key ) {
 		var evt = document.createEvent("KeyboardEvent");
-        evt.initKeyEvent("keypress", true, true, null, false, false, false, false, key, 0);
-        this.focus.dispatchEvent(evt);
+		evt.initKeyEvent("keypress", true, true, null, false, false, false, false, key, 0);
+		this.focus.dispatchEvent(evt);
 	},
 	undoShift: function () {
 		fxKeyboard.shift = 0;
