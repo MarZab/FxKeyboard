@@ -12,12 +12,13 @@
 						<button label="e" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('e')"/>
 						<button label="r" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('r')"/>
 						<button label="t" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('t')"/>
-						<button label="z" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('y')"/>
+						<button label="z" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('z')"/>
 						<button label="u" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('u')"/>
 						<button label="i" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('i')"/>
 						<button label="o" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('o')"/>
 						<button label="p" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('p')"/>
-						<button label="ù" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('ù')"/>
+						<button label="ü" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('ü')"/>
+						<button label="ß" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('ß')"/>
 					</hbox>
 					<hbox flex="1">
 						<button label="a" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('a')"/>
@@ -29,7 +30,8 @@
 						<button label="j" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('j')"/>
 						<button label="k" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('k')"/>
 						<button label="l" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('l')"/>
-						<button label="ô" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('ô')"/>
+						<button label="ö" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('ö')"/>
+						<button label="ä" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('ä')"/>
 					</hbox>
 					<hbox flex="1">
 						<button label="Umschalt" flex="2" class="fxKeyboardActionKeys" id="fxKeyboardShift" oncommand="fxKeyboard.doShift()"/>
@@ -40,7 +42,6 @@
 						<button label="b" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('b')"/>
 						<button label="n" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('n')"/>
 						<button label="m" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('m')"/>
-						<button label="á" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('á')"/>
 						<button label="&#8592; Rücktaste" type="repeat" class="fxKeyboardActionKeys" flex="2" oncommand="fxKeyboard.doSpecialKey(8)"/>
 					</hbox>
 				</vbox>
