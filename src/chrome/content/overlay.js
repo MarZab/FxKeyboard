@@ -1,9 +1,9 @@
 "use strict";
 /*
 FxKeyboard
-Version: 2.1.0
+Version: 2.2.0
 Author:  Marko Zabreznik
-Date:    19 Apr 2012
+Date:    25 May 2012
 Purpose: A virtual keyboard for Firefox
 */
 
@@ -18,8 +18,11 @@ var fxKeyboard = {
 		var buttonHeight = this.prefs.getCharPref("extensions.fxkeyboard.button_height");
 		var repeatAll = this.prefs.getBoolPref("extensions.fxkeyboard.repeat_all");
 		var buttons = document.getElementById('fxKeyboardToolbar').getElementsByTagName('button');
+		
 		for( var b in buttons) {
-			buttons[b].style.height = buttonHeight;
+			if (buttons[b].style) 
+				buttons[b].style.height = buttonHeight;
+			else continue;
 			if (repeatAll)
 				buttons[b].type = 'repeat';
 			if (!buttons[b].flex)
@@ -29,6 +32,7 @@ var fxKeyboard = {
 		this.shift = 0; // 0 closed, 1 open, 2 persistent
 		this.toolbar = document.getElementById('fxKeyboardToolbar');
 		this.mainKeys = document.getElementById('fxKeyboardMainKeys');
+		this.keys = this.mainKeys.getElementsByClassName('fxKeyboardKey');
 		this.altKeys = document.getElementById('fxKeyboardAltKeys');
 		this.alt = 0;
 		
@@ -105,7 +109,7 @@ var fxKeyboard = {
 	},
 	undoShift: function () {
 		fxKeyboard.shift = 0;
-		for( k in fxKeyboard.keys) {
+		for( var k in fxKeyboard.keys) {
 			if (fxKeyboard.keys[k].label!==undefined)
 				fxKeyboard.keys[k].label = fxKeyboard.keys[k].label.toLowerCase();
 		}
@@ -124,7 +128,7 @@ var fxKeyboard = {
 		switch ( this.shift ) {
 			case 0:
 				this.shift = 1;
-				for( k in fxKeyboard.keys) {
+				for( var k in fxKeyboard.keys) {
 					if (fxKeyboard.keys[k].label!==undefined)
 						fxKeyboard.keys[k].label = fxKeyboard.keys[k].label.toUpperCase();
 				}

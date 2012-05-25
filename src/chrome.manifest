@@ -2,7 +2,6 @@ content	fxkeyboard chrome/content/
 
 locale	fxkeyboard en-US chrome/locale/en-US/
 locale	fxkeyboard de-DE chrome/locale/de-DE/
-locale	fxkeyboard de-AT chrome/locale/de-AT/
 locale	fxkeyboard sl-SI chrome/locale/sl-SI/
 locale	fxkeyboard hr-HR chrome/locale/hr-HR/
 
