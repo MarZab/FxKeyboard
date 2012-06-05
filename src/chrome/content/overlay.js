@@ -179,5 +179,29 @@ var fxKeyboard = {
 		// backspace
 		this.doSpecialKey(8);
 	},
+	doPrint: function (){
+		//this.focus.value+='\r';
+		// set portrait orientation
+		jsPrintSetup.setOption('orientation', jsPrintSetup.kPortraitOrientation);
+		// set top margins in millimeters
+		//set page header
+		jsPrintSetup.setOption('headerStrLeft', '');
+		jsPrintSetup.setOption('headerStrCenter', '');
+		jsPrintSetup.setOption('headerStrRight', '&PT');
+		// set empty page footer
+		jsPrintSetup.setOption('footerStrLeft', '');
+		jsPrintSetup.setOption('footerStrCenter', '');
+		jsPrintSetup.setOption('footerStrRight', '');
+		// Suppress print dialog
+		jsPrintSetup.clearSilentPrint();
+		jsPrintSetup.setOption('printSilent',1);
+		// Do Print
+		alert("Please wait, your document should be printing.")
+		jsPrintSetup.print();
+		// Take focus off button - was causing double prints
+		this.focus.value='';
+		
+
+	},
 }
 // END fxKeyboard
