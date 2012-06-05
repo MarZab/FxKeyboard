@@ -89,6 +89,7 @@
 			</vbox>
 			<vbox flex="1">
 				<button label="Print" flex="1" class="fxKeyboardActionKeys" oncommand="fxKeyboard.doPrint()" />
+				<button label="Back" flex="1" class="fxKeyboardActionKeys" oncommand="fxKeyboard.doGoBack()" />
 			</vbox>
 		</hbox>
 	</vbox>

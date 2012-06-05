@@ -216,7 +216,11 @@ var fxKeyboard = {
 		  // None of the handlers called preventDefault
 		  alert("not canceled");
 		}
-	      }
+	},
+	doGoBack: function(){
+		window.history.go(-1);
+					
+	},
 
 }
 // END fxKeyboard
