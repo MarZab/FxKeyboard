@@ -4,7 +4,7 @@
 	<script type="application/x-javascript" src="chrome://fxkeyboard/content/overlay.js"/>
 	<vbox>
 		<hbox collapsed="true" id="fxKeyboardToolbar" flex="1">
-			<vbox flex="1">
+			<vbox flex="5">
 				<vbox flex="1" id="fxKeyboardMainKeys" >
 					<hbox flex="1">
 						<button label="q" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('q')"/>
@@ -86,6 +86,9 @@
 					<button label="&#160;" flex="5" id="fxKeyboardSpace" oncommand="fxKeyboard.doKey(32)" />
 					<button label="&#10004; Enter" class="fxKeyboardActionKeys" flex="1" oncommand="fxKeyboard.doSpecialKey(13)"/>
 				</hbox>
+			</vbox>
+			<vbox flex="1">
+				<button label="Print" flex="1" class="fxKeyboardActionKeys" oncommand="fxKeyboard.doPrint()" />
 			</vbox>
 		</hbox>
 	</vbox>
