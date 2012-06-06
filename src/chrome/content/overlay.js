@@ -44,6 +44,22 @@ var fxKeyboard = {
 		this.toogleKeepOpen(
 			this.prefs.getBoolPref("extensions.fxkeyboard.keep_open")
 		); // keep open
+		
+		
+		// Check button enable preferences and disable necessary buttons
+		if(this.prefs.getBoolPref("extensions.fxkeyboard.enable_special_buttons") == false)
+		{
+			document.getElementById('fxKeyboardSpecialButtons').parentNode.removeChild(document.getElementById('fxKeyboardSpecialButtons'));
+		}
+		if(this.prefs.getBoolPref("extensions.fxkeyboard.enable_print_button") == false)
+		{
+			document.getElementById('fxKeyboardPrintButton').parentNode.removeChild(document.getElementById('fxKeyboardPrintButton'));
+		}
+		if(this.prefs.getBoolPref("extensions.fxkeyboard.enable_back_button") == false)
+		{
+			document.getElementById('fxKeyboardBackButton').parentNode.removeChild(document.getElementById('fxKeyboardBackButton'));
+		}
+		
 	},
 	onFocus: function() {
 		fxKeyboard.focus = document.commandDispatcher.focusedElement;
@@ -179,5 +195,34 @@ var fxKeyboard = {
 		// backspace
 		this.doSpecialKey(8);
 	},
+	doPrint: function (){
+		//this.focus.value+='\r';
+		// set portrait orientation
+		jsPrintSetup.setOption('orientation', jsPrintSetup.kPortraitOrientation);
+		// set top margins in millimeters
+		//set page header
+		jsPrintSetup.setOption('headerStrLeft', '');
+		jsPrintSetup.setOption('headerStrCenter', '');
+		jsPrintSetup.setOption('headerStrRight', '&PT');
+		// set empty page footer
+		jsPrintSetup.setOption('footerStrLeft', '');
+		jsPrintSetup.setOption('footerStrCenter', '');
+		jsPrintSetup.setOption('footerStrRight', '');
+		// Suppress print dialog
+		jsPrintSetup.clearSilentPrint();
+		jsPrintSetup.setOption('printSilent',1);
+		// Do Print
+		alert("Please wait, your document should be printing.")
+		jsPrintSetup.print();
+		// Take focus off button - was causing double prints
+		this.focus.value='';
+		
+
+	},
+	doGoBack: function(){
+		content.history.back();
+							
+	},
+
 }
 // END fxKeyboard

@@ -22,7 +22,9 @@ Settings (via about:config)
 - *extensions.fxkeyboard.keep_open* dissable auto close
 - *extensions.fxkeyboard.repeat_all* make all keys repeat if long pressed
 - *extensions.fxkeyboard.button_height* set the button height
-
+- *extensions.fxkeyboard.enable_special_buttons* enable special buttons on the right
+- *extensions.fxkeyboard.enable_back_button* enable the back buttons special key
+- *extensions.fxkeyboard.enable_print_button* enable the print button special key
 
 Locales
 --------------------------------------
