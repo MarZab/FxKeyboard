@@ -44,6 +44,22 @@ var fxKeyboard = {
 		this.toogleKeepOpen(
 			this.prefs.getBoolPref("extensions.fxkeyboard.keep_open")
 		); // keep open
+		
+		
+		// Check button enable preferences and disable necessary buttons
+		if(this.prefs.getBoolPref("extensions.fxkeyboard.enable_special_buttons") == false)
+		{
+			document.getElementById('fxKeyboardSpecialButtons').parentNode.removeChild(document.getElementById('fxKeyboardSpecialButtons'));
+		}
+		if(this.prefs.getBoolPref("extensions.fxkeyboard.enable_print_button") == false)
+		{
+			document.getElementById('fxKeyboardPrintButton').parentNode.removeChild(document.getElementById('fxKeyboardPrintButton'));
+		}
+		if(this.prefs.getBoolPref("extensions.fxkeyboard.enable_back_button") == false)
+		{
+			document.getElementById('fxKeyboardBackButton').parentNode.removeChild(document.getElementById('fxKeyboardBackButton'));
+		}
+		
 	},
 	onFocus: function() {
 		fxKeyboard.focus = document.commandDispatcher.focusedElement;
@@ -218,8 +234,8 @@ var fxKeyboard = {
 		}
 	},
 	doGoBack: function(){
-		window.history.go(-1);
-					
+		content.history.back();
+							
 	},
 
 }
