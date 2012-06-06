@@ -219,20 +219,6 @@ var fxKeyboard = {
 		
 
 	},
-	simulateKey: function() {
-		var evt = document.createEvent("KeyboardEvent");
-		evt.initKeyEvent ("keypress", true, true, window,
-				  0, 0, 0, 0,
-				  0, "tab".charCodeAt(0)) 
-		var canceled = !body.dispatchEvent(evt);
-		if(canceled) {
-		  // A handler called preventDefault
-		  alert("canceled");
-		} else {
-		  // None of the handlers called preventDefault
-		  alert("not canceled");
-		}
-	},
 	doGoBack: function(){
 		content.history.back();
 							
