@@ -32,6 +32,7 @@ Currently supported locales
 - de-AT
 - sl-SI
 - hr-HR
+- ru-RU
 
 For missing locales, edit src/chrome/locale/en-US/overlay.xul and open a Issue.
 
