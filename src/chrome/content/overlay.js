@@ -1,9 +1,9 @@
 "use strict";
 /*
 FxKeyboard
-Version: 2.2.0
+Version: 2.3.0
 Author:  Marko Zabreznik
-Date:    25 May 2012
+Date:    20 Jul 2012
 Purpose: A virtual keyboard for Firefox
 */
 
@@ -55,7 +55,7 @@ var fxKeyboard = {
 		}
 		
 		// auto open/close
-		if (fxKeyboard.focus && (	
+		if (fxKeyboard.focus && fxKeyboard.focus.getAttribute('data-fxkeyboard')!=='false' && (	
 				fxKeyboard.focus.nodeName && fxKeyboard.focus.nodeName.toLowerCase() in {
 					'input':'','select':'',
 					'option':'','textarea':''

@@ -3,7 +3,7 @@
 	<Description about="urn:mozilla:install-manifest">
 		<em:id>fxkeyboard@zabreznik.net</em:id>
 		<em:name>FxKeyboard</em:name> 
-		<em:version>2.2.0</em:version>
+		<em:version>2.3.0</em:version>
 		<em:description>A virtual keyboard for Firefox</em:description>
 		<em:creator>Marko Zabreznik</em:creator>
 		<em:homepageURL>http://zabreznik.net</em:homepageURL>
