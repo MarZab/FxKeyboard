@@ -33,7 +33,7 @@ Currently supported locales
 - sl-SI
 - hr-HR
 - ru-RU
-
+- it-IT
 For missing locales, edit src/chrome/locale/en-US/overlay.xul and open a Issue.
 
 

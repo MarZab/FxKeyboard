@@ -3,9 +3,9 @@ FILENAME="fxkeyboard-$(VERSION).xpi"
 
 build:
 	@echo "Building $(FILENAME)..."
-	@cd "src" && zip -r "$(FILENAME)" *
+	@cd "src" && 7za a -tzip "$(FILENAME)" *
 	@mv "src/$(FILENAME)" .
-	@zip "$(FILENAME)" COPYING README
+	@7za a -tzip "$(FILENAME)" COPYING README
 	@echo "Done!"
 
 clean:
