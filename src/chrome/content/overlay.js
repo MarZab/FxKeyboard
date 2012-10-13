@@ -1,7 +1,7 @@
 "use strict";
 /*
 FxKeyboard
-Version: 2.3.1
+Version: 2.4.0
 Author:  Marko Zabreznik
 Date:    5 Sep 2012
 Purpose: A virtual keyboard for Firefox
@@ -16,12 +16,15 @@ var fxKeyboard = {
 		
 		// set button styles
 		var buttonHeight = this.prefs.getCharPref("extensions.fxkeyboard.button_height");
+		var buttonFont = this.prefs.getCharPref("extensions.fxkeyboard.button_font");
 		var repeatAll = this.prefs.getBoolPref("extensions.fxkeyboard.repeat_all");
 		var buttons = document.getElementById('fxKeyboardToolbar').getElementsByTagName('button');
 		
 		for( var b in buttons) {
-			if (buttons[b].style) 
+			if (buttons[b].style) {
 				buttons[b].style.height = buttonHeight;
+				buttons[b].style.cssText += ';'+ buttonFont
+			}
 			else continue;
 			if (repeatAll)
 				buttons[b].type = 'repeat';

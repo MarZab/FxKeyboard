@@ -22,6 +22,7 @@ Settings (via about:config)
 - *extensions.fxkeyboard.keep_open* dissable auto close
 - *extensions.fxkeyboard.repeat_all* make all keys repeat if long pressed
 - *extensions.fxkeyboard.button_height* set the button height
+- *extensions.fxkeyboard.button_font* set the font of the buttons, needs a restart
 
 
 Locales
