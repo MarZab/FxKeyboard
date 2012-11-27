@@ -1,5 +1,7 @@
 #fxKeyboardToolbar  * {
 	-moz-user-focus:ignore;
+	direction:ltr;
+	font-size:20px;
 }
 
 #fxKeyboardToolbar  button {
@@ -8,4 +10,39 @@
 
 .fxKeyboardActionKeys {
 	font-weight:bold;
+}
+
+.shift {
+-moz-appearance: none;
+background-image: -moz-linear-gradient(top, #cccccc 0%, #cecece 66%, #dddddd 100%);
+border-radius:5px;
+border:	2px inset rgba(100,100,100,0.5);
+}
+.cupslock {
+-moz-appearance: none;
+background-image: -moz-linear-gradient(top, #dddddd 0%, #dfdfdf 66%, #eeeeee 100%);
+border-radius:5px;
+border:	2px inset rgba(100,100,100,0.5);
+font-weight:bold;
+color:red;
+font-color:red;
+}
+
+.lang{
+-moz-appearance: none;
+background-image: -moz-linear-gradient(top, #c3d9ff 0%, #b1c8ef 66%, #98b0d9 100%);
+border-radius:10px;
+border:	1px outset rgba(100,100,100,0.5);
+font-weight:bold;
+}
+
+.selected {
+-moz-appearance: none;
+background-image: -moz-linear-gradient(bottom, #ffd9c3 0%, #efc8b1 66%, #d9b098 100%);
+-moz-outline-radius:0;
+-moz-box-shadow: 10 10 13 inset;
+border-radius:10px;
+border:	1px inset rgba(100,100,100,0.5);
+color:blue;
+font-weight:bold;
 }

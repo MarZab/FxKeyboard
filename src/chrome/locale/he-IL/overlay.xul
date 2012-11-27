@@ -1,0 +1,236 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://fxkeyboard/content/overlay.css" type="text/css"?>
+<overlay xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+	<script type="application/x-javascript" src="chrome://fxkeyboard/content/overlay.js"/>
+<vbox>
+		<hbox collapsed="true" id="fxKeyboardToolbar" flex="1">
+			<vbox flex="1">
+<hbox>
+				<hbox>
+					<vbox>
+						<spacer flex="2" />
+						<hbox>
+							<vbox>
+								<button id="lang_en-US" flex="1" label="English" class="lang" oncommand="fxKeyboard.changeLayout('en-US')" />
+								<button id="lang_MainKeys" flex="1" label="עברית" class="lang" oncommand="fxKeyboard.changeLayout('MainKeys')" />
+							</vbox>
+							<vbox>
+								<button id="lang_ru-RU" flex="1" label="Русский" class="lang" oncommand="fxKeyboard.changeLayout('ru-RU')" />
+								<button id="lang_ar-AR" flex="1" label="العربية" class="lang" oncommand="fxKeyboard.changeLayout('ar-AR')" />
+							</vbox>
+						</hbox>
+						<spacer flex="2" />
+					</vbox>
+				</hbox>
+				<hbox flex="1">
+					<vbox id="fxKeyboardLayouts" flex="1">
+						<vbox flex="1" id="fxKeyboard_MainKeys">
+							<hbox flex="1">
+								<button label="/" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('/')"/>
+								<button label="'" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('\'')"/>
+								<button label="ק" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('ק')"/>
+								<button label="ר" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('ר')"/>
+								<button label="א" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('א')"/>
+								<button label="ט" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('ט')"/>
+								<button label="ו" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('ו')"/>
+								<button label="ן" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('ן')"/>
+								<button label="ם" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('ם')"/>
+								<button label="פ" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('פ')"/>
+							</hbox>
+							<hbox flex="1">
+								<button label="ש" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('ש')"/>
+								<button label="ד" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('ד')"/>
+								<button label="ג" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('ג')"/>
+								<button label="כ" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('כ')"/>
+								<button label="ע" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('ע')"/>
+								<button label="י" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('י')"/>
+								<button label="ח" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('ח')"/>
+								<button label="ל" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('ל')"/>
+								<button label="ך" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('ך')"/>
+								<button label="ף" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('ף')"/>
+							</hbox>
+							<hbox flex="1">
+								<button label="ז" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('ז')"/>
+								<button label="ס" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('ס')"/>
+								<button label="ב" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('ב')"/>
+								<button label="ה" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('ה')"/>
+								<button label="נ" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('נ')"/>
+								<button label="מ" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('מ')"/>
+								<button label="צ" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('צ')"/>
+								<button label="ת" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('ת')"/>
+								<button label="ץ" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('ץ')"/>
+								<button label="&#8592; Backspace" type="repeat" class="fxKeyboardActionKeys" flex="2" oncommand="fxKeyboard.doSpecialKey(8)"/>
+							</hbox>
+						</vbox>
+						<vbox flex="1" id="fxKeyboard_ar-AR" collapsed="true">
+							<hbox flex="1">
+								<button label="ض" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('ض')"/>
+								<button label="ص" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('ص')"/>
+								<button label="ث" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('ث')"/>
+								<button label="ق" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('ق')"/>
+								<button label="ف" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('ف')"/>
+								<button label="غ" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('غ')"/>
+								<button label="ع" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('ع')"/>
+								<button label="ه" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('ه')"/>
+								<button label="خ" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('خ')"/>
+								<button label="ح" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('ح')"/>
+								<button label="ج" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('ج')"/>
+								<button label="د" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('د')"/>
+							</hbox>
+							<hbox flex="1">
+								<button label="ش" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('ش')"/>
+								<button label="س" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('س')"/>
+								<button label="ي" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('ي')"/>
+								<button label="ب" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('ب')"/>
+								<button label="ل" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('ل')"/>
+								<button label="ا" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('ا')"/>
+								<button label="ت" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('ت')"/>
+								<button label="ن" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('ن')"/>
+								<button label="م" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('م')"/>
+								<button label="ك" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('ك')"/>
+								<button label="ط" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('ط')"/>
+							</hbox>
+							<hbox flex="1">
+								<button label="ئ" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('ئ')"/>
+								<button label="ء" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('ء')"/>
+								<button label="ؤ" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('ؤ')"/>
+								<button label="ر" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('ر')"/>
+								<button label="ﻻ" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('ﻻ')"/>
+								<button label="ى" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('ى')"/>
+								<button label="ة" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('ة')"/>
+								<button label="و" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('و')"/>
+								<button label="ز" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('ز')"/>
+								<button label="ظ" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('ظ')"/>
+								<button label="&#8592; Backspace" type="repeat" class="fxKeyboardActionKeys" flex="2" oncommand="fxKeyboard.doSpecialKey(8)"/>
+							</hbox>
+						</vbox>
+
+						<vbox flex="1" id="fxKeyboard_en-US" collapsed="true">
+							<hbox flex="1">
+								<button label="q" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('q')"/>
+								<button label="w" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('w')"/>
+								<button label="e" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('e')"/>
+								<button label="r" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('r')"/>
+								<button label="t" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('t')"/>
+								<button label="y" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('y')"/>
+								<button label="u" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('u')"/>
+								<button label="i" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('i')"/>
+								<button label="o" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('o')"/>
+								<button label="p" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('p')"/>
+							</hbox>
+							<hbox flex="1">
+								<button label="a" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('a')"/>
+								<button label="s" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('s')"/>
+								<button label="d" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('d')"/>
+								<button label="f" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('f')"/>
+								<button label="g" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('g')"/>
+								<button label="h" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('h')"/>
+								<button label="j" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('j')"/>
+								<button label="k" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('k')"/>
+								<button label="l" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('l')"/>
+							</hbox>
+							<hbox flex="1">
+								<button label="z" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('z')"/>
+								<button label="x" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('x')"/>
+								<button label="c" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('c')"/>
+								<button label="v" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('v')"/>
+								<button label="b" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('b')"/>
+								<button label="n" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('n')"/>
+								<button label="m" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('m')"/>
+								<button label="&#8592; Backspace" type="repeat" class="fxKeyboardActionKeys" flex="2" oncommand="fxKeyboard.doSpecialKey(8)"/>
+							</hbox>
+						</vbox>
+						<vbox flex="1" id="fxKeyboard_ru-RU" collapsed="true">
+							<hbox flex="1">
+								<button label="й" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('й')"/>
+								<button label="ц" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('ц')"/>
+								<button label="у" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('у')"/>
+								<button label="к" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('к')"/>
+								<button label="е" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('е')"/>
+								<button label="н" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('н')"/>
+								<button label="г" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('г')"/>
+								<button label="ш" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('ш')"/>
+								<button label="щ" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('щ')"/>
+								<button label="з" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('з')"/>
+								<button label="х" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('х')"/>
+								<button label="ъ" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('ъ')"/>
+							</hbox>
+							<hbox flex="1">
+								<button label="ф" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('ф')"/>
+								<button label="ы" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('ы')"/>
+								<button label="в" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('в')"/>
+								<button label="а" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('а')"/>
+								<button label="п" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('п')"/>
+								<button label="р" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('р')"/>
+								<button label="о" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('о')"/>
+								<button label="л" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('л')"/>
+								<button label="д" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('д')"/>
+								<button label="ж" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('ж')"/>
+								<button label="э" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('э')"/>
+							</hbox>
+							<hbox flex="1">
+								<button label="я" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('я')"/>
+								<button label="ч" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('ч')"/>
+								<button label="с" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('с')"/>
+								<button label="м" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('м')"/>
+								<button label="и" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('и')"/>
+								<button label="т" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('т')"/>
+								<button label="ь" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('ь')"/>
+								<button label="б" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('б')"/>
+								<button label="ю" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('ю')"/>
+								<button label="&#8592; Backspace" type="repeat" class="fxKeyboardActionKeys" flex="2" oncommand="fxKeyboard.doSpecialKey(8)"/>
+							</hbox>
+						</vbox>
+
+						<vbox id="fxKeyboardAltKeys" collapsed="true" >
+							<hbox flex="1">
+								<button label="1" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('1')"/>
+								<button label="2" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('2')"/>
+								<button label="3" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('3')"/>
+								<button label="4" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('4')"/>
+								<button label="5" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('5')"/>
+								<button label="6" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('6')"/>
+								<button label="7" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('7')"/>
+								<button label="8" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('8')"/>
+								<button label="9" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('9')"/>
+								<button label="0" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('0')"/>
+							</hbox>
+							<hbox flex="1">
+								<button label="@" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('@')"/>
+								<button label="#" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('#')"/>
+								<button label="$" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('$')"/>
+								<button label="%" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('%')"/>
+								<button label="&amp;" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('&amp;')"/>
+								<button label="*" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('*')"/>
+								<button label="-" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('-')"/>
+								<button label="+" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('+')"/>
+								<button label="." class="fxKeyboardKey" oncommand="fxKeyboard.doKey('.')"/>
+								<button label="," class="fxKeyboardKey" oncommand="fxKeyboard.doKey(',')"/>
+							</hbox>
+							<hbox flex="1">
+								<button label="!" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('!')"/>
+								<button label="&#34;" class="fxKeyboardKey" oncommand="fxKeyboard.doKey(34)"/>
+								<button label="'" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('\'')"/>
+								<button label=":" class="fxKeyboardKey" oncommand="fxKeyboard.doKey(':')"/>
+								<button label=";" class="fxKeyboardKey" oncommand="fxKeyboard.doKey(';')"/>
+								<button label="&#47;" class="fxKeyboardKey" oncommand="fxKeyboard.doKey(47)"/>
+								<button label="?" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('?')"/>
+								<button label="(" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('(')"/>
+								<button label=")" class="fxKeyboardKey" oncommand="fxKeyboard.doKey(')')"/>
+								<button label="&#8592; Backspace" type="repeat" class="fxKeyboardActionKeys"  flex="2" oncommand="fxKeyboard.doSpecialKey(8)"/>
+							</hbox>
+						</vbox>
+					</vbox>
+				</hbox>
+				</hbox>
+	<hbox flex="1" id="fxKeyboardBottomRow">
+		<button label="Shift" class="fxKeyboardActionKeys" id="fxKeyboardShift" oncommand="fxKeyboard.doShift()"/>
+		<button label="?123" flex="1" class="fxKeyboardActionKeys" id="fxKeyboardAlt" oncommand="fxKeyboard.switchAltKeys()" />
+		<button label="&#10008; Clear" flex="1" class="fxKeyboardActionKeys" oncommand="fxKeyboard.doClear()" />
+		<button label="&#160;" flex="5" id="fxKeyboardSpace" oncommand="fxKeyboard.doKey(32)" />
+		<button label="&#10004; Enter" class="fxKeyboardActionKeys" flex="1" oncommand="fxKeyboard.doSpecialKey(13)"/>
+	</hbox>
+	</vbox>
+</hbox>
+</vbox>
+</overlay>

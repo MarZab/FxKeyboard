@@ -18,8 +18,8 @@ var fxKeyboard = {
 		var buttonHeight = this.prefs.getCharPref("extensions.fxkeyboard.button_height");
 		var buttonFont = this.prefs.getCharPref("extensions.fxkeyboard.button_font");
 		var repeatAll = this.prefs.getBoolPref("extensions.fxkeyboard.repeat_all");
+		this.lockSpecial=this.prefs.getBoolPref("extensions.fxkeyboard.lock_special");
 		var buttons = document.getElementById('fxKeyboardToolbar').getElementsByTagName('button');
-		
 		for( var b in buttons) {
 			if (buttons[b].style) {
 				buttons[b].style.height = buttonHeight;
@@ -33,12 +33,16 @@ var fxKeyboard = {
 		}
 	
 		this.shift = 0; // 0 closed, 1 open, 2 persistent
+		this.current_layout='MainKeys'
 		this.toolbar = document.getElementById('fxKeyboardToolbar');
-		this.mainKeys = document.getElementById('fxKeyboardMainKeys');
-		this.keys = this.mainKeys.getElementsByClassName('fxKeyboardKey');
+		this.mainKeys = document.getElementById('fxKeyboard_MainKeys');
+		var layouts=document.getElementById('fxKeyboardLayouts');
+		this.keys = layouts.getElementsByClassName('fxKeyboardKey');
 		this.altKeys = document.getElementById('fxKeyboardAltKeys');
 		this.alt = 0;
-		
+		this.layout=document.getElementById('lang_MainKeys')
+		this.layout.className='selected';
+				
 		this.focus; // current focused element
 		
 		document.addEventListener("focus", this.onFocus,true);
@@ -90,7 +94,7 @@ var fxKeyboard = {
 		if (typeof(key)=='string') {
 			if (this.shift > 0) {
 				key = key.toUpperCase();
-				if ( this.shift<2 )
+				if ( this.shift<2 && !this.lockSpecial )
 					this.undoShift();
 			}
 			key = key.charCodeAt(0);
@@ -112,6 +116,7 @@ var fxKeyboard = {
 	},
 	undoShift: function () {
 		fxKeyboard.shift = 0;
+		document.getElementById('fxKeyboardShift').className ='fxKeyboardActionKeys';
 		for( var k in fxKeyboard.keys) {
 			if (fxKeyboard.keys[k].label!==undefined)
 				fxKeyboard.keys[k].label = fxKeyboard.keys[k].label.toLowerCase();
@@ -119,29 +124,36 @@ var fxKeyboard = {
 	},
 	doShift: function ( )
 	{
+		document.getElementById('fxKeyboardAlt').className = 'fxKeyboardActionKeys';
 		// reset alt
 		if (this.alt > 0) {
 			this.alt = 2;
 			this.switchAltKeys();
-			this.undoShift();
-			return;
+//			this.undoShift();
+//			return;
 		}
 	
 		// uppercase
 		switch ( this.shift ) {
 			case 0:
-				this.shift = 1;
-				for( var k in fxKeyboard.keys) {
-					if (fxKeyboard.keys[k].label!==undefined)
-						fxKeyboard.keys[k].label = fxKeyboard.keys[k].label.toUpperCase();
+				if (this.lockSpecial) {
+					this.shift=2
+					document.getElementById('fxKeyboardShift').className = 'cupslock';
 				}
+				else {
+				 	this.shift = 1;
+					document.getElementById('fxKeyboardShift').className = 'shift';
+				}
+					for( var k in fxKeyboard.keys) {
+						if (fxKeyboard.keys[k].label!==undefined)
+							fxKeyboard.keys[k].label = fxKeyboard.keys[k].label.toUpperCase();
+					}
 				break;
 			case 1:
 				this.shift = 2;
-				document.getElementById('fxKeyboardShift').style.color = 'red';
+				document.getElementById('fxKeyboardShift').className = 'cupslock';
 				break;
 			default:
-				document.getElementById('fxKeyboardShift').style.color = 'inherit';
 				this.undoShift();
 				break;
 		}
@@ -149,7 +161,7 @@ var fxKeyboard = {
 	switchAltKeys: function () {
 		// reset shift
 		if ( this.shift > 0) {
-			document.getElementById('fxKeyboardShift').style.color = 'inherit';
+			document.getElementById('fxKeyboardShift').className ='fxKeyboardActionKeys';
 			this.undoShift();
 		}
 	
@@ -158,16 +170,23 @@ var fxKeyboard = {
 				// show alt
 				this.mainKeys.collapsed = true;
 				this.altKeys.collapsed = false;
-				this.alt = 1;
+				if(this.lockSpecial) {
+					document.getElementById('fxKeyboardAlt').className = 'cupslock';
+					this.alt = 2;
+				}
+				else {
+					document.getElementById('fxKeyboardAlt').className = 'shift';
+					this.alt = 1;
+				}
 				break;
 			case 1:
 				// keep alt
-				document.getElementById('fxKeyboardAlt').style.color = 'red';
+				document.getElementById('fxKeyboardAlt').className = 'cupslock';
 				this.alt = 2;
 				break;
 			default:
 				// show default
-				document.getElementById('fxKeyboardAlt').style.color = 'inherit';
+				document.getElementById('fxKeyboardAlt').className = 'fxKeyboardActionKeys';
 				this.mainKeys.collapsed = false;
 				this.altKeys.collapsed = true;
 				this.alt = 0;
@@ -182,5 +201,18 @@ var fxKeyboard = {
 		// backspace
 		this.doSpecialKey(8);
 	},
+	changeLayout: function ( encoding ) {
+		document.getElementById('fxKeyboardAlt').className = 'fxKeyboardActionKeys';
+		this.mainKeys.collapsed=true;
+		this.altKeys.collapsed=true;
+		this.alt=0;
+		this.mainKeys = document.getElementById('fxKeyboard_'+encoding);
+		this.mainKeys.collapsed=false
+
+		// higlight language button
+		this.layout.className='lang';
+		this.layout=document.getElementById('lang_'+encoding)
+		this.layout.className='selected';
+	}
 }
 // END fxKeyboard
