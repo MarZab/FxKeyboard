@@ -35,6 +35,7 @@ Currently supported locales
 - hr-HR
 - ru-RU
 - it-IT
+- pl-PL
 For missing locales, edit src/chrome/locale/en-US/overlay.xul and open a Issue.
 
 
