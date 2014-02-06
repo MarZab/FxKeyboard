@@ -7,6 +7,6 @@ locale	fxkeyboard hr-HR chrome/locale/hr-HR/
 locale  fxkeyboard ru-RU chrome/locale/ru-RU/
 locale	fxkeyboard it-IT chrome/locale/it-IT/
 locale	fxkeyboard pl-PL chrome/locale/pl-PL/
-locale	fxkeyboard pl-PL chrome/locale/fr-FR/
+locale	fxkeyboard fr-FR chrome/locale/fr-FR/
 
 overlay	chrome://browser/content/browser.xul	chrome://fxkeyboard/locale/overlay.xul
