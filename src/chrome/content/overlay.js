@@ -32,7 +32,7 @@ var fxKeyboard = {
 				buttons[b].flex = 1;
 		}
 	
-		this.shift = 0; // 0 closed, 1 open, 2 persistent
+		//this.shift = 0; // 0 closed, 1 open, 2 persistent
 		this.toolbar = document.getElementById('fxKeyboardToolbar');
 		this.mainKeys = document.getElementById('fxKeyboardMainKeys');
 		this.keys = this.mainKeys.getElementsByClassName('fxKeyboardKey');
@@ -88,11 +88,11 @@ var fxKeyboard = {
 	{
 		// press a key on the focused item
 		if (typeof(key)=='string') {
-			if (this.shift > 0) {
+			/*if (this.shift > 0) {
 				key = key.toUpperCase();
 				if ( this.shift<2 )
 					this.undoShift();
-			}
+			}*/
 			key = key.charCodeAt(0);
 		} 
 		
@@ -110,7 +110,7 @@ var fxKeyboard = {
 		evt.initKeyEvent("keypress", true, true, null, false, false, false, false, key, 0);
 		this.focus.dispatchEvent(evt);
 	},
-	undoShift: function () {
+	/*undoShift: function () {
 		fxKeyboard.shift = 0;
 		for( var k in fxKeyboard.keys) {
 			if (fxKeyboard.keys[k].label!==undefined)
@@ -145,33 +145,27 @@ var fxKeyboard = {
 				this.undoShift();
 				break;
 		}
-	},
-	switchAltKeys: function () {
+	},*/
+	switchAltKeys: function ( keep ) {
 		// reset shift
-		if ( this.shift > 0) {
+		/*if ( this.shift > 0) {
 			document.getElementById('fxKeyboardShift').style.color = 'inherit';
 			this.undoShift();
-		}
+		}*/
 	
-		switch ( this.alt ) {
-			case 0:
-				// show alt
-				this.mainKeys.collapsed = true;
-				this.altKeys.collapsed = false;
-				this.alt = 1;
-				break;
-			case 1:
-				// keep alt
+		if (this.alt > 0) {
+			document.getElementById('fxKeyboardAlt').style.color = 'inherit';
+			this.mainKeys.collapsed = false;
+			this.altKeys.collapsed = true;
+			this.alt = 0;
+		} else {
+			this.mainKeys.collapsed = true;
+			this.altKeys.collapsed = false;
+			this.alt = 1;
+			if (keep) {
 				document.getElementById('fxKeyboardAlt').style.color = 'red';
 				this.alt = 2;
-				break;
-			default:
-				// show default
-				document.getElementById('fxKeyboardAlt').style.color = 'inherit';
-				this.mainKeys.collapsed = false;
-				this.altKeys.collapsed = true;
-				this.alt = 0;
-				break;
+			}
 		}
 	},	
 	doClear: function() {

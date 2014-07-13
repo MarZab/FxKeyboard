@@ -4,8 +4,5 @@
 
 #fxKeyboardToolbar  button {
 	min-width:1px;
-}
-
-.fxKeyboardActionKeys {
-	font-weight:bold;
+	font-family: mono;
 }

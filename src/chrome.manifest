@@ -1,12 +1,5 @@
 content	fxkeyboard chrome/content/ 
 
 locale	fxkeyboard en-US chrome/locale/en-US/
-locale	fxkeyboard de-DE chrome/locale/de-DE/
-locale	fxkeyboard sl-SI chrome/locale/sl-SI/
-locale	fxkeyboard hr-HR chrome/locale/hr-HR/
-locale  fxkeyboard ru-RU chrome/locale/ru-RU/
-locale	fxkeyboard it-IT chrome/locale/it-IT/
-locale	fxkeyboard pl-PL chrome/locale/pl-PL/
-locale	fxkeyboard fr-FR chrome/locale/fr-FR/
 
 overlay	chrome://browser/content/browser.xul	chrome://fxkeyboard/locale/overlay.xul
