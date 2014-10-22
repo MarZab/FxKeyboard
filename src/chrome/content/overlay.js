@@ -49,6 +49,9 @@ var fxKeyboard = {
 		); // keep open
 	},
 	onFocus: function() {
+		if (!fxKeyboard.prefs.getBoolPref("extensions.fxkeyboard.enabled")) {
+			return;
+		}
 		fxKeyboard.focus = document.commandDispatcher.focusedElement;
 		if(!fxKeyboard.focus) fxKeyboard.focus = document.commandDispatcher.focusedWindow.document.activeElement;
 		
