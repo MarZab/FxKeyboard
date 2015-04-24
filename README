@@ -27,7 +27,7 @@ Settings (via about:config)
 
 Locales
 --------------------------------------
-Currently supported locales
+Currently supported locales (check hisory for credits)
 - en-US
 - de-DE 
 - de-AT
@@ -37,6 +37,7 @@ Currently supported locales
 - it-IT
 - pl-PL
 - fr-FR
+- es-ES
 
 For missing locales, edit src/chrome/locale/en-US/overlay.xul and open a Issue.
 
