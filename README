@@ -1,11 +1,11 @@
 FxKeyboard - A virtual keyboard for Firefox
 ==================================================
 
+BRANCH, experiment on switching langauges.
+
 A handy Firefox virtual keyboard for touchscreen use.
 
-By Marko Zabreznik © since 2008, GPL 3 
-
-Firefox Addon url: https://addons.mozilla.org/firefox/addon/fxkeyboard/
+By Marko Zabreznik © since 2015, GPL 3 
 
 Features
 --------------------------------------
@@ -23,21 +23,5 @@ Settings (via about:config)
 - *extensions.fxkeyboard.repeat_all* make all keys repeat if long pressed
 - *extensions.fxkeyboard.button_height* set the button height
 - *extensions.fxkeyboard.button_font* set the font of the buttons, needs a restart
-
-
-Locales
---------------------------------------
-Currently supported locales
-- en-US
-- de-DE 
-- de-AT
-- sl-SI
-- hr-HR
-- ru-RU
-- it-IT
-- pl-PL
-- fr-FR
-
-For missing locales, edit src/chrome/locale/en-US/overlay.xul and open a Issue.
 
 

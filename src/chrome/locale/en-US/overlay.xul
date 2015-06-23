@@ -5,7 +5,8 @@
 	<vbox>
 		<hbox collapsed="true" id="fxKeyboardToolbar" flex="1">
 			<vbox flex="1">
-				<vbox flex="1" id="fxKeyboardMainKeys" >
+			
+				<vbox flex="1" class="fxKeyboardMainKeys fxKeyboardKeys" id="main_ar" collapsed="true" >
 					<hbox flex="1">
 						<button label="ذ" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('ذ')"/>
 						<button label="1" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('1')"/>
@@ -40,7 +41,7 @@
 						<button label="Del" type="repeat" class="fxKeyboardActionKeys topleft" oncommand="fxKeyboard.doSpecialKey(46)"/>
 					</hbox>
 					<hbox flex="1">
-						<button label="Caps" flex="2" class="fxKeyboardActionKeys topleft" oncommand="fxKeyboard.switchAltKeys(true)" />
+						<button label="Caps" flex="2" class="fxKeyboardActionKeys topleft fxKeyboardAlt" oncommand="fxKeyboard.switchAltKeys(true)" />
 						<button label="ش" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('ش')"/>
 						<button label="س" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('س')"/>
 						<button label="ي" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('ي')"/>
@@ -69,7 +70,8 @@
 						<button label="Shift" flex="3" class="fxKeyboardActionKeys topleft" oncommand="fxKeyboard.switchAltKeys()" />
 					</hbox>
 				</vbox>
-				<vbox id="fxKeyboardAltKeys" collapsed="true" >
+				
+				<vbox class="fxKeyboardAltKeys fxKeyboardKeys" id="alt_ar" collapsed="true" >
 					<hbox flex="1">
 						<button label=" ّ " class="fxKeyboardKey" oncommand="fxKeyboard.doKey(' ّ ')"/>
 						<button label="!" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('!')"/>
@@ -104,7 +106,7 @@
 						<button label="Del" type="repeat" class="fxKeyboardActionKeys topleft" oncommand="fxKeyboard.doSpecialKey(127)"/>
 					</hbox>
 					<hbox flex="1">
-						<button label="Caps" flex="2" class="fxKeyboardActionKeys topleft" id="fxKeyboardAlt" oncommand="fxKeyboard.switchAltKeys(true)" />
+						<button label="Caps" flex="2" class="fxKeyboardActionKeys topleft fxKeyboardAlt" oncommand="fxKeyboard.switchAltKeys(true)" />
 						<button label="&#1616;" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('&#1616;')"/>
 						<button label="&#1613;" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('&#1613;')"/>
 						<button label="]" class="fxKeyboardKey" oncommand="fxKeyboard.doKey(']')"/>
@@ -133,8 +135,140 @@
 						<button label="Shift" flex="3" class="fxKeyboardActionKeys topleft" oncommand="fxKeyboard.switchAltKeys()" />
 					</hbox>
 				</vbox>
+
+				<vbox flex="1" class="fxKeyboardMainKeys fxKeyboardKeys" id="main_en" >
+					<hbox flex="1">
+						<button label="`" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('`')"/>
+						<button label="1" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('1')"/>
+						<button label="2" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('2')"/>
+						<button label="3" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('3')"/>
+						<button label="4" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('4')"/>
+						<button label="5" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('5')"/>
+						<button label="6" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('6')"/>
+						<button label="7" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('7')"/>
+						<button label="8" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('8')"/>
+						<button label="9" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('9')"/>
+						<button label="0" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('0')"/>
+						<button label="-" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('-')"/>
+						<button label="=" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('=')"/>
+						<button label="&#8592;" type="repeat" class="fxKeyboardActionKeys topleft"  flex="2" oncommand="fxKeyboard.doSpecialKey(8)"/>
+					</hbox>
+					<hbox flex="1">
+						<button label="Tab" class="fxKeyboardActionKeys topleft" flex="1" oncommand="fxKeyboard.doKey('\t')"/>
+						<button label="q" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('q')"/>
+						<button label="w" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('w')"/>
+						<button label="e" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('e')"/>
+						<button label="r" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('r')"/>
+						<button label="t" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('t')"/>
+						<button label="y" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('y')"/>
+						<button label="u" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('u')"/>
+						<button label="i" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('i')"/>
+						<button label="o" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('o')"/>
+						<button label="p" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('p')"/>
+						<button label="[" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('[')"/>
+						<button label="]" class="fxKeyboardKey" oncommand="fxKeyboard.doKey(']')"/>
+						<button label="\" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('\\')"/>
+						<button label="Del" type="repeat" class="fxKeyboardActionKeys topleft" oncommand="fxKeyboard.doSpecialKey(46)"/>
+					</hbox>
+					<hbox flex="1">
+						<button label="Caps" flex="2" class="fxKeyboardActionKeys topleft fxKeyboardAlt" oncommand="fxKeyboard.switchAltKeys(true)" />
+						<button label="a" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('a')"/>
+						<button label="s" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('s')"/>
+						<button label="d" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('d')"/>
+						<button label="f" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('f')"/>
+						<button label="g" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('g')"/>
+						<button label="h" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('h')"/>
+						<button label="j" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('j')"/>
+						<button label="k" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('k')"/>
+						<button label="l" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('l')"/>
+						<button label=";" class="fxKeyboardKey" oncommand="fxKeyboard.doKey(';')"/>
+						<button label="'" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('\'')"/>
+						<button label="Enter" class="fxKeyboardActionKeys topleft" flex="2" oncommand="fxKeyboard.doSpecialKey(13)"/>
+					</hbox>
+					<hbox flex="1">
+						<button label="Shift" flex="3" class="fxKeyboardActionKeys topleft" oncommand="fxKeyboard.switchAltKeys()" />
+						<button label="z" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('z')"/>
+						<button label="x" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('x')"/>
+						<button label="c" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('c')"/>
+						<button label="v" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('v')"/>
+						<button label="b" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('b')"/>
+						<button label="n" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('n')"/>
+						<button label="m" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('m')"/>
+						<button label="," class="fxKeyboardKey" oncommand="fxKeyboard.doKey(',')"/>
+						<button label="." class="fxKeyboardKey" oncommand="fxKeyboard.doKey('.')"/>
+						<button label="/" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('/')"/>
+						<button label="Shift" flex="3" class="fxKeyboardActionKeys topleft" oncommand="fxKeyboard.switchAltKeys()" />
+					</hbox>
+				</vbox>
+				<vbox class="fxKeyboardAltKeys fxKeyboardKeys" id="alt_en" collapsed="true" >
+					<hbox flex="1">
+						<button label="~" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('~')"/>
+						<button label="!" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('!')"/>
+						<button label="@" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('@')"/>
+						<button label="#" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('#')"/>
+						<button label="$" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('$')"/>
+						<button label="%" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('%')"/>
+						<button label="^" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('^')"/>
+						<button label="&#38;" class="fxKeyboardKey" oncommand="fxKeyboard.doKey(38)"/>
+						<button label="*" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('*')"/>
+						<button label="(" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('(')"/>
+						<button label=")" class="fxKeyboardKey" oncommand="fxKeyboard.doKey(')')"/>
+						<button label="_" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('_')"/>
+						<button label="+" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('+')"/>
+						<button label="&#8592;" type="repeat" class="fxKeyboardActionKeys topleft"  flex="2" oncommand="fxKeyboard.doSpecialKey(8)"/>
+					</hbox>
+					<hbox flex="1">
+						<button label="Tab" class="fxKeyboardActionKeys topleft" flex="1" oncommand="fxKeyboard.doKey('\t')"/>
+						<button label="Q" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('Q')"/>
+						<button label="W" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('W')"/>
+						<button label="E" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('E')"/>
+						<button label="R" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('R')"/>
+						<button label="T" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('T')"/>
+						<button label="Y" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('Y')"/>
+						<button label="U" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('U')"/>
+						<button label="I" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('I')"/>
+						<button label="O" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('O')"/>
+						<button label="P" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('P')"/>
+						<button label="{" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('{')"/>
+						<button label="}" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('}')"/>
+						<button label="|" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('|')"/>
+						<button label="Del" type="repeat" class="fxKeyboardActionKeys topleft" oncommand="fxKeyboard.doSpecialKey(127)"/>
+					</hbox>
+					<hbox flex="1">
+						<button label="Caps" flex="2" class="fxKeyboardActionKeys topleft fxKeyboardAlt" oncommand="fxKeyboard.switchAltKeys(true)" />
+						<button label="A" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('A')"/>
+						<button label="S" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('S')"/>
+						<button label="D" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('D')"/>
+						<button label="F" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('F')"/>
+						<button label="G" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('G')"/>
+						<button label="H" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('H')"/>
+						<button label="J" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('J')"/>
+						<button label="K" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('K')"/>
+						<button label="L" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('L')"/>
+						<button label=":" class="fxKeyboardKey" oncommand="fxKeyboard.doKey(':')"/>
+						<button label='"' class="fxKeyboardKey" oncommand="fxKeyboard.doKey(34)"/>
+						<button label="Enter" class="fxKeyboardActionKeys topleft" flex="2" oncommand="fxKeyboard.doSpecialKey(13)"/>
+					</hbox>
+					<hbox flex="1">
+						<button label="Shift" flex="3" class="fxKeyboardActionKeys topleft" oncommand="fxKeyboard.switchAltKeys()" />
+						<button label="Z" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('Z')"/>
+						<button label="X" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('X')"/>
+						<button label="C" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('C')"/>
+						<button label="V" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('V')"/>
+						<button label="B" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('B')"/>
+						<button label="N" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('N')"/>
+						<button label="M" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('M')"/>
+						<button label="&#60;" class="fxKeyboardKey" oncommand="fxKeyboard.doKey(60)"/>
+						<button label="&#62;" class="fxKeyboardKey" oncommand="fxKeyboard.doKey(62)"/>
+						<button label="?" class="fxKeyboardKey" oncommand="fxKeyboard.doKey('?')"/>
+						<button label="Shift" flex="3" class="fxKeyboardActionKeys topleft" oncommand="fxKeyboard.switchAltKeys()" />
+					</hbox>
+				</vbox>
+				
 				<hbox flex="1" id="fxKeyboardBottomRow">
+					<button label="Ar" flex="false" style="width: 80px;" class="fxKeyboardActionKeys fxKeyboardLocaleButton" oncommand="fxKeyboard.switchLocale()" />
 					<button label="&#160;" flex="5" id="fxKeyboardSpace" oncommand="fxKeyboard.doKey(32)" />
+					<button label="Ar" flex="false" style="width: 80px;" class="fxKeyboardActionKeys fxKeyboardLocaleButton" oncommand="fxKeyboard.switchLocale()" />
 				</hbox>
 			</vbox>
 		</hbox>

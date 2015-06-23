@@ -1,9 +1,9 @@
 "use strict";
 /*
 FxKeyboard
-Version: 2.4.0
+Version: 2.4.2~alternate-en-ar
 Author:  Marko Zabreznik
-Date:    5 Sep 2012
+Date:    15 Jul 2014
 Purpose: A virtual keyboard for Firefox
 */
 
@@ -34,10 +34,13 @@ var fxKeyboard = {
 	
 		//this.shift = 0; // 0 closed, 1 open, 2 persistent
 		this.toolbar = document.getElementById('fxKeyboardToolbar');
-		this.mainKeys = document.getElementById('fxKeyboardMainKeys');
-		this.keys = this.mainKeys.getElementsByClassName('fxKeyboardKey');
-		this.altKeys = document.getElementById('fxKeyboardAltKeys');
 		this.alt = 0;
+		
+		this.locale = 'en';
+		this.locales = {
+			'en': 'ع',
+			'ar': 'ENG'
+		};
 		
 		this.focus; // current focused element
 		
@@ -47,6 +50,8 @@ var fxKeyboard = {
 		this.toogleKeepOpen(
 			this.prefs.getBoolPref("extensions.fxkeyboard.keep_open")
 		); // keep open
+		
+		this.drawKeyboard();
 	},
 	onFocus: function() {
 		fxKeyboard.focus = document.commandDispatcher.focusedElement;
@@ -86,13 +91,7 @@ var fxKeyboard = {
 	},
 	doKey: function ( key )
 	{
-		// press a key on the focused item
 		if (typeof(key)=='string') {
-			/*if (this.shift > 0) {
-				key = key.toUpperCase();
-				if ( this.shift<2 )
-					this.undoShift();
-			}*/
 			key = key.charCodeAt(0);
 		} 
 		
@@ -110,64 +109,68 @@ var fxKeyboard = {
 		evt.initKeyEvent("keypress", true, true, null, false, false, false, false, key, 0);
 		this.focus.dispatchEvent(evt);
 	},
-	/*undoShift: function () {
-		fxKeyboard.shift = 0;
-		for( var k in fxKeyboard.keys) {
-			if (fxKeyboard.keys[k].label!==undefined)
-				fxKeyboard.keys[k].label = fxKeyboard.keys[k].label.toLowerCase();
-		}
-	},
-	doShift: function ( )
-	{
-		// reset alt
-		if (this.alt > 0) {
-			this.alt = 2;
-			this.switchAltKeys();
-			this.undoShift();
-			return;
-		}
 	
-		// uppercase
-		switch ( this.shift ) {
-			case 0:
-				this.shift = 1;
-				for( var k in fxKeyboard.keys) {
-					if (fxKeyboard.keys[k].label!==undefined)
-						fxKeyboard.keys[k].label = fxKeyboard.keys[k].label.toUpperCase();
-				}
-				break;
-			case 1:
-				this.shift = 2;
-				document.getElementById('fxKeyboardShift').style.color = 'red';
-				break;
-			default:
-				document.getElementById('fxKeyboardShift').style.color = 'inherit';
-				this.undoShift();
-				break;
-		}
-	},*/
 	switchAltKeys: function ( keep ) {
-		// reset shift
-		/*if ( this.shift > 0) {
-			document.getElementById('fxKeyboardShift').style.color = 'inherit';
-			this.undoShift();
-		}*/
 	
 		if (this.alt > 0) {
-			document.getElementById('fxKeyboardAlt').style.color = 'inherit';
-			this.mainKeys.collapsed = false;
-			this.altKeys.collapsed = true;
+		
+			this.eachClass('fxKeyboardAlt', function(e){
+				e.style.backgroundColor = 'black';
+			})
 			this.alt = 0;
+			this.drawKeyboard()
 		} else {
-			this.mainKeys.collapsed = true;
-			this.altKeys.collapsed = false;
 			this.alt = 1;
 			if (keep) {
-				document.getElementById('fxKeyboardAlt').style.color = 'red';
+				this.eachClass('fxKeyboardAlt', function(e){
+					e.style.backgroundColor = '#302f37';
+				})
 				this.alt = 2;
 			}
+			this.drawKeyboard()
 		}
 	},	
+	
+	switchLocale: function () {
+		if (this.locale == 'en') {
+			this.locale='ar';
+			
+		} else {
+			this.locale='en';
+		}
+		this.eachClass('fxKeyboardAlt', function(e){
+			e.style.backgroundColor = 'black';
+		})
+		this.alt = 0;
+		this.drawKeyboard();
+	},
+	
+	drawKeyboard: function () {
+		var locale = this.locale;
+		var locales = this.locales;
+		this.eachClass('fxKeyboardKeys', function(e){
+			e.collapsed = true;
+		});
+		// show the right keyboard for locale and alt
+		if (this.alt) {
+			document.getElementById('alt_' + locale).collapsed = false;
+		} else {
+			document.getElementById('main_' + locale).collapsed = false;
+		}
+		
+		this.eachClass('fxKeyboardLocaleButton', function(e){
+			e.label = locales[locale];
+		});
+	
+	},
+	
+	eachClass: function (c, f) {
+		var elems = document.getElementsByClassName(c);
+		for(var i = 0; i < elems.length; i++) {
+			f(elems[i]);
+		}
+	},
+	
 	doClear: function() {
 		// select all text
 		var evt = document.createEvent("KeyboardEvent");
