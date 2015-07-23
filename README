@@ -38,6 +38,7 @@ Currently supported locales (check hisory for credits)
 - pl-PL
 - fr-FR
 - es-ES
+- da-DA
 
 For missing locales, edit src/chrome/locale/en-US/overlay.xul and open a Issue.
 

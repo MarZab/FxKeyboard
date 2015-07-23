@@ -9,5 +9,6 @@ locale	fxkeyboard it-IT chrome/locale/it-IT/
 locale	fxkeyboard pl-PL chrome/locale/pl-PL/
 locale	fxkeyboard fr-FR chrome/locale/fr-FR/
 locale  fxkeyboard es-ES chrome/locale/es-ES/
+locale  fxkeyboard da-DA chrome/locale/da-DA/
 
 overlay	chrome://browser/content/browser.xul	chrome://fxkeyboard/locale/overlay.xul
