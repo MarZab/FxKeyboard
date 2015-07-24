@@ -3,7 +3,7 @@
 }
 
 #fxKeyboardToolbar {
-    padding: 5px;
+    padding: 2px;
     background: #eee;
 }
 
@@ -13,9 +13,9 @@
 
 .fxKeyboardButton {
 	min-width:1px;
-	font-family: monospace;
+	font-family: "Lucida Console", Monaco, monospace;
     margin: 2px;
-    height: 2em;
+    height: 2.3em;
     font-size: 1.5em;
     -moz-appearance: none;
     border: 1px outset #bbb;
@@ -35,4 +35,8 @@
 
 .fxKeyboardActionKeys {
     background: #bbb;
+}
+
+.fxKeyboardActionKeys.narrow {
+    max-width: 2.3em;
 }

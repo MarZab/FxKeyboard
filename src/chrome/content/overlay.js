@@ -10,19 +10,39 @@
 var fxKeyboard = {
     startUp: function () {
 
-        // todo settings
-        //this.prefs = Components.classes["@mozilla.org/preferences-service;1"]
-        //    .getService(Components.interfaces.nsIPrefBranch);
+        // settings
+        fxKeyboard.prefs = Components.classes["@mozilla.org/preferences-service;1"]
+            .getService(Components.interfaces.nsIPrefBranch);
 
-        fxKeyboard.locale = 'en-small';
+        fxKeyboard.settings.repeat_all = fxKeyboard.prefs.getBoolPref("extensions.fxkeyboard.repeat_all");
+        var locale_picker = fxKeyboard.prefs.getCharPref("extensions.fxkeyboard.locale_picker");
+        if (locale_picker) {
+            fxKeyboard.settings.locale_picker = locale_picker.split(' ');
+        }
+        var locale_default = fxKeyboard.prefs.getCharPref("extensions.fxkeyboard.locale_default");
+        if (locale_default && fxKeyboard.settings.locale_picker.indexOf(locale_default)) {
+            fxKeyboard.settings.locale_default = locale_default;
+        }
+
+        //
         fxKeyboard.toolbar = document.getElementById('fxKeyboardToolbar');
 
         // events
         document.addEventListener("focus", this.onFocus, true);
         document.addEventListener("blur", this.onFocus, true);
 
-        fxKeyboard.makeKeyboard(fxKeyboard.locale);
+        fxKeyboard.locale = fxKeyboard.settings.locale_picker.indexOf(fxKeyboard.settings.locale_default);
+        fxKeyboard.makeKeyboard(fxKeyboard.settings.locale_picker[fxKeyboard.locale]);
+
+
     },
+
+    settings: {
+        repeat_all: true,
+        locale_default: 'en',
+        locale_picker: ['en', 'de', 'da', 'sl']
+    },
+
 
     specialKeys: {
         'shift': function (e) {
@@ -49,6 +69,22 @@ var fxKeyboard = {
             fxKeyboard._dispatchKey(97);
             // backspace
             fxKeyboard._dispatchAltKey(8);
+        },
+        'keepOpen': function () {
+            if (fxKeyboard.keepOpen) {
+                fxKeyboard._setKeyActive('keepOpen', 0);
+                fxKeyboard.keepOpen = false;
+            } else {
+                fxKeyboard._setKeyActive('keepOpen', 1);
+                fxKeyboard.keepOpen = true;
+            }
+        },
+        'toggleLocale': function () {
+            fxKeyboard.locale ++;
+            if (fxKeyboard.locale > fxKeyboard.settings.locale_picker.length -1) {
+                fxKeyboard.locale = 0;
+            }
+            fxKeyboard.makeKeyboard(fxKeyboard.settings.locale_picker[fxKeyboard.locale]);
         }
     },
 
@@ -111,6 +147,9 @@ var fxKeyboard = {
         var row = document.getElementById(rowId);
         const XUL_NS = "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
 
+        while (row.firstChild)
+            row.removeChild(row.firstChild);
+
         items.forEach(function (item) {
             var button = document.createElementNS(XUL_NS, 'button');
 
@@ -157,18 +196,27 @@ var fxKeyboard = {
 
         if (typeof key === 'string') {
             button.label = key;
-            button.setAttribute('type', 'repeat');
+            if (fxKeyboard.settings.repeat_all) {
+                button.setAttribute('type', 'repeat');
+            }
         } else {
+
             button.label = key.label;
+
+            if (key.image) button.image = key.image;
+
             if (key.type) {
                 button.setAttribute('type', key.type);
             }
-            // class
+
             if (key.class) {
                 key.class.split(' ').forEach(function (c) {
                     button.classList.add(c);
                 });
             }
+
+            if (key.tooltiptext)
+                button.setAttribute('tooltiptext', key.tooltiptext);
         }
     },
 

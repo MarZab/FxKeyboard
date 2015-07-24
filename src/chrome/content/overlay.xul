@@ -5,7 +5,7 @@
 	<vbox>
 		<hbox collapsed="false" id="fxKeyboardToolbar">
             <vbox flex="1"></vbox>
-            <vbox id="fxKeyboardKeys" flex="100">
+            <vbox id="fxKeyboardKeys" flex="1000">
                 <hbox flex="1">
                     <hbox id="fxKeyboardKeysRow1" flex="1">
                     </hbox>
