@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://fxkeyboard/content/overlay.css" type="text/css"?>
+<overlay xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+	<vbox>
+		<hbox collapsed="false" id="fxKeyboardToolbar">
+            <vbox flex="1"></vbox>
+            <vbox id="fxKeyboardKeys" flex="1000">
+                <hbox flex="1">
+                    <hbox id="fxKeyboardKeysRow1" flex="1">
+                    </hbox>
+                </hbox>
+                <hbox flex="1">
+                    <hbox id="fxKeyboardKeysRow2" flex="1">
+
+                    </hbox>
+                </hbox>
+                <hbox flex="1">
+                    <hbox id="fxKeyboardKeysRow3" flex="1">
+
+                    </hbox>
+                </hbox>
+                <hbox flex="1">
+                    <hbox id="fxKeyboardKeysRow4" flex="1">
+
+                    </hbox>
+                </hbox>
+                <hbox flex="1">
+                    <hbox id="fxKeyboardKeysRow5" flex="1">
+
+                    </hbox>
+                </hbox>
+            </vbox>
+            <vbox flex="1"></vbox>
+		</hbox>
+	</vbox>
+
+    <script type="application/x-javascript" src="chrome://fxkeyboard/content/locales.js"/>
+    <script type="application/x-javascript" src="chrome://fxkeyboard/content/overlay.js"/>
+
+</overlay>
