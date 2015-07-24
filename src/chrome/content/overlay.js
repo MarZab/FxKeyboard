@@ -158,13 +158,15 @@ var fxKeyboard = {
             else key = item[0];
         } else key = item[state];
 
-        if (typeof key === 'string') {
+        if (key === '') {
+            button.label = '\u0020';
+            return;
+        }
 
+        if (typeof key === 'string') {
             button.label = key;
             button.setAttribute('type', 'repeat');
-
         } else {
-
             button.label = key.label;
             if (key.type) {
                 button.setAttribute('type', key.type);
@@ -175,7 +177,6 @@ var fxKeyboard = {
                     button.classList.add(c);
                 });
             }
-
         }
     },
 

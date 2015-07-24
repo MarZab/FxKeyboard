@@ -15,7 +15,7 @@ var FxKeyboardLocales = {
         font: 'monospace',
         row1: [
             [{'label': "\u21E5", special: 'tab', flex:'1', class:'fxKeyboardActionKeys'}], // tab
-            ['q',   'Q',    '1',   ''],
+            ['q',   'Q',    '1',   {label: 'Tab', string: '\t', flex:1}],
             ['w',   'W',    '2',   ''],
             ['e',   'E',    '3',   ''],
             ['r',   'R',    '4',   ''],
