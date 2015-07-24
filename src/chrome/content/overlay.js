@@ -10,25 +10,17 @@
 var fxKeyboard = {
     startUp: function () {
 
-        this.prefs = Components.classes["@mozilla.org/preferences-service;1"]
-            .getService(Components.interfaces.nsIPrefBranch);
+        // todo settings
+        //this.prefs = Components.classes["@mozilla.org/preferences-service;1"]
+        //    .getService(Components.interfaces.nsIPrefBranch);
 
         fxKeyboard.locale = 'en-small';
-
-
-        // set button styles
-        //var buttonHeight = this.prefs.getCharPref("extensions.fxkeyboard.button_height");
-        //var buttonFont = this.prefs.getCharPref("extensions.fxkeyboard.button_font");
-        //var repeatAll = this.prefs.getBoolPref("extensions.fxkeyboard.repeat_all");
-        //var buttons = document.getElementById('fxKeyboardToolbar').getElementsByTagName('button');
-
         fxKeyboard.toolbar = document.getElementById('fxKeyboardToolbar');
 
         // events
         document.addEventListener("focus", this.onFocus, true);
         document.addEventListener("blur", this.onFocus, true);
 
-        //
         fxKeyboard.makeKeyboard(fxKeyboard.locale);
     },
 
