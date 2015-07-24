@@ -2,7 +2,37 @@
 	-moz-user-focus:ignore;
 }
 
-#fxKeyboardToolbar  button {
+#fxKeyboardToolbar {
+    padding: 5px;
+    background: #eee;
+}
+
+#fxKeyboardKeys {
+    max-width: 1200px;
+}
+
+.fxKeyboardButton {
 	min-width:1px;
-	font-family: mono;
+	font-family: monospace;
+    margin: 2px;
+    height: 2em;
+    font-size: 1.5em;
+    -moz-appearance: none;
+    border: 1px outset #bbb;
+    border-radius: 4px;
+    background: #dedede;
+    color: black;
+}
+
+.fxKeyboardButton:active, .fxKeyboardButton.active {
+    border-style: inset;
+    color: black;
+}
+
+.fxKeyboardButton.locked {
+    background: #999;
+}
+
+.fxKeyboardActionKeys {
+    background: #bbb;
 }
