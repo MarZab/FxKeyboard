@@ -11,18 +11,24 @@ var fxKeyboard = {
     startUp: function () {
 
         // settings
-        fxKeyboard.prefs = Components.classes["@mozilla.org/preferences-service;1"]
-            .getService(Components.interfaces.nsIPrefBranch);
+        this.prefs = Components.classes["@mozilla.org/preferences-service;1"]
+            .getService(Components.interfaces.nsIPrefService)
+            .getBranch("extensions.fxkeyboard.");
+        this.prefs.QueryInterface(Components.interfaces.nsIPrefBranch2);
+        this.prefs.addObserver("", this, false);
 
-        fxKeyboard.settings.repeat_all = fxKeyboard.prefs.getBoolPref("extensions.fxkeyboard.repeat_all");
-        var locale_picker = fxKeyboard.prefs.getCharPref("extensions.fxkeyboard.locale_picker");
+
+        fxKeyboard.settings.repeat_all = fxKeyboard.prefs.getBoolPref("repeat_all");
+        var locale_picker = fxKeyboard.prefs.getCharPref("locale_picker");
         if (locale_picker) {
             fxKeyboard.settings.locale_picker = locale_picker.split(' ');
         }
-        var locale_default = fxKeyboard.prefs.getCharPref("extensions.fxkeyboard.locale_default");
+        var locale_default = fxKeyboard.prefs.getCharPref("locale_default");
         if (locale_default && fxKeyboard.settings.locale_picker.indexOf(locale_default)) {
             fxKeyboard.settings.locale_default = locale_default;
         }
+
+        this.settings.key_height = this.prefs.getCharPref("key_height");
 
         //
         fxKeyboard.toolbar = document.getElementById('fxKeyboardToolbar');
@@ -40,6 +46,7 @@ var fxKeyboard = {
     settings: {
         repeat_all: true,
         locale_default: 'en',
+        key_height: '40',
         locale_picker: ['en', 'de', 'da', 'sl']
     },
 
@@ -157,6 +164,10 @@ var fxKeyboard = {
             button.setAttribute('flex', items[0].flex || '1');
             button.classList.add("fxKeyboardButton");
 
+            if (fxKeyboard.settings.key_height) {
+                button.setAttribute('height', fxKeyboard.settings.key_height);
+            }
+
             button.fxkbdata = item;
             button.addEventListener("command", function (e) {
                 fxKeyboard._processPress(item, e);
@@ -198,7 +209,7 @@ var fxKeyboard = {
             button.label = key;
             if (fxKeyboard.settings.repeat_all) {
                 button.setAttribute('type', 'repeat');
-            }
+            } else button.removeAttribute('type');
         } else {
 
             button.label = key.label;
@@ -385,13 +396,35 @@ var fxKeyboard = {
                 }
             });
         }
-    }
+    },
 
+
+    // settings
+    observe: function(subject, topic, data)
+    {
+        if (topic != "nsPref:changed")
+            return;
+
+
+        switch(data)
+        {
+            case "repeat_all":
+                this.settings.repeat_all = this.prefs.getBoolPref("repeat_all");
+                this._renderKeyboard();
+                break;
+            case "key_height":
+                this.settings.key_height = this.prefs.getCharPref("key_height");
+                fxKeyboard.makeKeyboard(fxKeyboard.settings.locale_picker[fxKeyboard.locale]);
+                break;
+        }
+    },
+    shutDown: function () {
+        this.prefs.removeObserver("", this);
+    }
 
 };
 
-window.addEventListener("load", function () {
-    fxKeyboard.startUp();
-}, false);
+window.addEventListener("load", function(e) { fxKeyboard.startUp(); }, false);
+window.addEventListener("unload", function(e) { fxKeyboard.shutDown(); }, false);
 
 // END fxKeyboard

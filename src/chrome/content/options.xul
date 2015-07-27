@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<vbox xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+    <setting pref="extensions.fxkeyboard.repeat_all" type="bool" title="Repeat all keys" />
+    <setting pref="extensions.fxkeyboard.locale_default" type="string" title="Default locale  (needs restart)" />
+    <setting pref="extensions.fxkeyboard.locale_picker" type="string" title="Available locales (needs restart)" />
+    <setting pref="extensions.fxkeyboard.key_height" type="string" title="Key height" />
+</vbox>
