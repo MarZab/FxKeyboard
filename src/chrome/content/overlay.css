@@ -1,15 +1,17 @@
-#fxKeyboardToolbar  * {
-	-moz-user-focus:ignore;
-}
 
-#fxKeyboardToolbar {
-    padding: 2px;
+.fxKeyboardToolbar {
+    -moz-user-focus:ignore;
     background: #eee;
 }
 
-#fxKeyboardKeys {
-    max-width: 1200px;
+.fxKeyboardButtons {
+    margin: 2px;
 }
+
+.fxKeyboardToolbar * {
+    -moz-user-focus:ignore;
+}
+
 
 .fxKeyboardButton {
 	min-width:1px;

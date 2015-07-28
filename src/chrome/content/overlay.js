@@ -8,6 +8,7 @@
  */
 
 var fxKeyboard = {
+
     startUp: function () {
 
         // settings
@@ -17,8 +18,22 @@ var fxKeyboard = {
         this.prefs.QueryInterface(Components.interfaces.nsIPrefBranch2);
         this.prefs.addObserver("", this, false);
 
+        this._processSettings();
+
+        // events
+        document.addEventListener("focus", this.onFocus, true);
+        document.addEventListener("blur", this.onFocus, true);
+
+        fxKeyboard.switchLocale(fxKeyboard.settings.locale_default);
+
+    },
+
+    _processSettings: function () {
 
         fxKeyboard.settings.repeat_all = fxKeyboard.prefs.getBoolPref("repeat_all");
+        fxKeyboard.settings.key_height = this.prefs.getCharPref("key_height");
+        fxKeyboard.settings.main_max_width = this.prefs.getCharPref("main_max_width");
+
         var locale_picker = fxKeyboard.prefs.getCharPref("locale_picker");
         if (locale_picker) {
             fxKeyboard.settings.locale_picker = locale_picker.split(' ');
@@ -28,35 +43,69 @@ var fxKeyboard = {
             fxKeyboard.settings.locale_default = locale_default;
         }
 
-        this.settings.key_height = this.prefs.getCharPref("key_height");
-
-        //
-        fxKeyboard.toolbar = document.getElementById('fxKeyboardToolbar');
-
-        // events
-        document.addEventListener("focus", this.onFocus, true);
-        document.addEventListener("blur", this.onFocus, true);
-
-        fxKeyboard.locale = fxKeyboard.settings.locale_picker.indexOf(fxKeyboard.settings.locale_default);
-        fxKeyboard.makeKeyboard(fxKeyboard.settings.locale_picker[fxKeyboard.locale]);
-
-
     },
 
     settings: {
         repeat_all: true,
         locale_default: 'en',
         key_height: '40',
+        main_max_width: '1600px',
         locale_picker: ['en', 'de', 'da', 'sl']
     },
 
 
     specialKeys: {
         'shift': function (e) {
-            fxKeyboard.pressShift(e);
+            var state = fxKeyboard.state;
+
+            if (fxKeyboard._shiftLock) {
+                fxKeyboard._shiftLock = false;
+                fxKeyboard._setKeyActive('shift', 0);
+                state = (state === 3) ? 2 : 0;
+            } else {
+                switch (fxKeyboard.state) {
+                    case 0:
+                        // nothing is on, enable single use shift
+                        state = 1;
+                        fxKeyboard._setKeyActive('shift', 1);
+                        break;
+                    case 2:
+                        // alt is on, turn on single use alt+shift
+                        state = 3;
+                        fxKeyboard._setKeyActive('shift', 1);
+                        break;
+                    case 1:
+                    case 3:
+                        // shift is on, lock it
+                        fxKeyboard._shiftLock = true;
+                        fxKeyboard._setKeyActive('shift', 2);
+                        break;
+                }
+            }
+            fxKeyboard.setState(state);
         },
         'alt': function (e) {
-            fxKeyboard.pressAlt(e);
+            var state = fxKeyboard.state;
+
+            switch (state) {
+                case 0:
+                    // nothing is on, turn on alt
+                    state = 2;
+                    fxKeyboard._setKeyActive('alt', 1);
+                    break;
+                case 2:
+                    // alt is on, turn it off
+                    state = 0;
+                    fxKeyboard._setKeyActive('alt', 0);
+                    break;
+                default:
+                    // alt-shift is on or shift is on, turn off shift, turn on alt
+                    state = 2;
+                    fxKeyboard._shiftLock = false;
+                    fxKeyboard._setKeyActive('shift', 0);
+                    fxKeyboard._setKeyActive('alt', 1);
+            }
+            fxKeyboard.setState(state);
         },
         'tab': function (e) {
             // special kind of tab, emulates the real one but not quite,
@@ -78,24 +127,75 @@ var fxKeyboard = {
             fxKeyboard._dispatchAltKey(8);
         },
         'keepOpen': function () {
+
+            fxKeyboard.toogleKeepOpen();
+
             if (fxKeyboard.keepOpen) {
                 fxKeyboard._setKeyActive('keepOpen', 0);
                 fxKeyboard.keepOpen = false;
             } else {
                 fxKeyboard._setKeyActive('keepOpen', 1);
+                fxKeyboard._setOpen(true);
                 fxKeyboard.keepOpen = true;
             }
         },
         'toggleLocale': function () {
-            fxKeyboard.locale ++;
-            if (fxKeyboard.locale > fxKeyboard.settings.locale_picker.length -1) {
-                fxKeyboard.locale = 0;
+            var locale = fxKeyboard.settings.locale_picker.indexOf(fxKeyboard.locale.locale);
+            locale++;
+            if (locale > fxKeyboard.settings.locale_picker.length -1) {
+                locale = 0;
             }
-            fxKeyboard.makeKeyboard(fxKeyboard.settings.locale_picker[fxKeyboard.locale]);
+            fxKeyboard.switchLocale(fxKeyboard.settings.locale_picker[locale]);
         }
     },
 
+    switchLocale: function (l) {
+        var locale = FxKeyboardLocales[l];
+        if (!locale  || locale === fxKeyboard.locale) return;
+
+        fxKeyboard.locale = locale;
+        fxKeyboard.makeButtons();
+    },
+
+    toogleKeepOpen: function (keepOpen) {
+        if (keepOpen !== false && keepOpen !== true) {
+            keepOpen = !fxKeyboard.keepOpen;
+        }
+        fxKeyboard.keepOpen = keepOpen;
+
+        if (keepOpen) {
+            fxKeyboard._setKeyActive('keepOpen', 1);
+            fxKeyboard._setOpen(true);
+            fxKeyboard.keepOpen = true;
+        } else {
+            fxKeyboard._setKeyActive('keepOpen', 0);
+            fxKeyboard.keepOpen = false;
+        }
+    },
+
+    _setOpen: function (open) {
+        var toolbars = document.querySelectorAll('.fxKeyboardToolbar');
+        if (toolbars) for (var i = 0; i < toolbars.length; i++) {
+            toolbars[i].collapsed = !open;
+        }
+    },
+
+    // shift pressed once
+    _shiftLock: false,
+    // the current focused element
     focus: false,
+    // all the current buttons
+    buttons: [],
+    /*
+     states:
+     0 - normal
+     1 - shift on
+     2 - alt
+     3 - alt+shift
+     */
+    state: 0,
+    keepOpen: false,
+
     // when a HTML element gets focus
     onFocus: function () {
         var open = false;
@@ -130,38 +230,25 @@ var fxKeyboard = {
             open = true;
         }
         fxKeyboard.focus = focus;
-        fxKeyboard.toolbar.collapsed = !open;
+        fxKeyboard._setOpen(open);
     },
 
     // destroy and render a new keyboard
-    makeKeyboard: function (l) {
-        if (!FxKeyboardLocales[l]) return;
-        var locale = FxKeyboardLocales[l];
-        fxKeyboard.keys = [];
-        fxKeyboard._makeKeyboardRow('fxKeyboardKeysRow1', locale.row1);
-        fxKeyboard._makeKeyboardRow('fxKeyboardKeysRow2', locale.row2);
-        fxKeyboard._makeKeyboardRow('fxKeyboardKeysRow3', locale.row3);
-        fxKeyboard._makeKeyboardRow('fxKeyboardKeysRow4', locale.row4);
-        fxKeyboard._makeKeyboardRow('fxKeyboardKeysRow5', locale.row5);
-    },
+    makeButtons: function () {
 
-    buttons: [],
-    // destroy and render a new row
-    _makeKeyboardRow: function (rowId, items) {
+        var locale = fxKeyboard.locale;
+        if (!locale) return;
 
-        if (!items) return;
+        // remove current keyboard
+        fxKeyboard.buttons = [];
+        fxKeyboard.state = 0;
 
-        var row = document.getElementById(rowId);
         const XUL_NS = "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
-
-        while (row.firstChild)
-            row.removeChild(row.firstChild);
-
-        items.forEach(function (item) {
+        function createButton(item){
             var button = document.createElementNS(XUL_NS, 'button');
 
             // style
-            button.setAttribute('flex', items[0].flex || '1');
+            button.setAttribute('flex', item.flex || '1');
             button.classList.add("fxKeyboardButton");
 
             if (fxKeyboard.settings.key_height) {
@@ -176,59 +263,111 @@ var fxKeyboard = {
             // register button
             fxKeyboard.buttons.push(button);
 
-            // append to row
-            row.appendChild(button);
-
-            fxKeyboard._renderButton(button, fxKeyboard.state);
-        });
-
-    },
-
-    // redraw every keyboard key
-    _renderKeyboard: function () {
-        fxKeyboard.buttons.forEach(function (button) {
-            fxKeyboard._renderButton(button, fxKeyboard.state);
-        });
-    },
-
-    // redraw button
-    _renderButton: function (button, state) {
-        var item = button.fxkbdata;
-        var key;
-        if (state > item.length -1) {
-            if (state === 3 && item.length > 2) key = item[2];
-            else key = item[0];
-        } else key = item[state];
-
-        if (key === '') {
-            button.label = '\u0020';
-            return;
+            return button;
         }
 
-        if (typeof key === 'string') {
-            button.label = key;
-            if (fxKeyboard.settings.repeat_all) {
-                button.setAttribute('type', 'repeat');
-            } else button.removeAttribute('type');
-        } else {
+        // main keyboard
+        var fxKeyboardMain = document.getElementById('fxKeyboardMain');
+        if (fxKeyboard.settings.main_max_width) {
+            // set width
+            fxKeyboardMain.style.maxWidth = fxKeyboard.settings.main_max_width;
+        }
+        while (fxKeyboardMain.firstChild) {
+            // truncate
+            fxKeyboardMain.removeChild(fxKeyboardMain.firstChild);
+        }
+        if (locale.main) {
+            fxKeyboardMain.collapsed = false;
+            locale.main.forEach(function (rowitems) {
 
-            button.label = key.label;
+                // create row
+                var row = document.createElementNS(XUL_NS, 'hbox');
+                row.setAttribute('flex', '1');
 
-            if (key.image) button.image = key.image;
-
-            if (key.type) {
-                button.setAttribute('type', key.type);
-            }
-
-            if (key.class) {
-                key.class.split(' ').forEach(function (c) {
-                    button.classList.add(c);
+                rowitems.forEach(function (item) {
+                    // append to row
+                    row.appendChild(createButton(item));
                 });
+
+                fxKeyboardMain.appendChild(row);
+            });
+        } else {
+            fxKeyboardMain.collapsed = true;
+        }
+
+        // sidebar
+        var fxKeyboardSide = document.getElementById('fxKeyboardSide');
+        while (fxKeyboardSide.firstChild) {
+            // truncate
+            fxKeyboardSide.removeChild(fxKeyboardSide.firstChild);
+        }
+        if (locale.side) {
+            fxKeyboardSide.collapsed = false;
+            locale.side.forEach(function (rowitems) {
+                var row = document.createElementNS(XUL_NS, 'hbox');
+                row.setAttribute('flex', '1');
+                rowitems.forEach(function (item) {
+                    row.appendChild(createButton(item));
+                });
+                fxKeyboardSide.appendChild(row);
+            });
+        } else {
+            fxKeyboardSide.collapsed = true;
+        }
+
+        // redraw keyboard
+        fxKeyboard.redrawButtons();
+    },
+
+    // redraw buttons based on the current state
+    redrawButtons: function () {
+        fxKeyboard.buttons.forEach(function (button) {
+            var item = button.fxkbdata;
+            var key, state = fxKeyboard.state;
+            if (state > item.length -1) {
+                if (state === 3 && item.length > 2) key = item[2];
+                else key = item[0];
+            } else key = item[state];
+
+            // a simple key/string
+            if (key === '') {
+                button.label = '\u0020';
+                return;
             }
 
-            if (key.tooltiptext)
-                button.setAttribute('tooltiptext', key.tooltiptext);
-        }
+            if (typeof key === 'string') {
+
+                button.label = key;
+                if (fxKeyboard.settings.repeat_all) {
+                    button.setAttribute('type', 'repeat');
+                } else {
+                    button.removeAttribute('type');
+                }
+
+            } else {
+
+                button.label = key.label;
+
+                if (key.image) {
+                    button.image = key.image;
+                }
+
+                if (key.type) {
+                    button.setAttribute('type', key.type);
+                }
+
+                if (key.class) {
+                    key.class.split(' ').forEach(function (c) {
+                        button.classList.add(c);
+                    });
+                }
+
+                if (key.tooltiptext){
+                    button.setAttribute('tooltiptext', key.tooltiptext);
+                }
+
+            }
+        });
     },
 
     _processPress: function (item, e) {
@@ -278,7 +417,15 @@ var fxKeyboard = {
         evt.initKeyEvent("keyup", true, true, null, false, false, false, false, 0, key);
         target.dispatchEvent(evt);
 
-        fxKeyboard._shiftUnpress();
+        // unpress shift
+        if (!fxKeyboard._shiftLock) {
+            if (fxKeyboard.state === 1) {
+                fxKeyboard.setState(0);
+            } else if (fxKeyboard.state === 3) {
+                fxKeyboard.setState(2);
+            } else return;
+            fxKeyboard._setKeyActive('shift', 0);
+        }
 
     },
 
@@ -293,92 +440,17 @@ var fxKeyboard = {
         target.dispatchEvent(evt);
     },
 
-    state: 0,
     // switch state if needed
-    setState: function (state, keep) {
-        /*
-            states:
-            0 - normal
-            1 - shift on
-            2 - alt
-            3 - alt+shift
-         */
+    setState: function (state) {
         if (state === fxKeyboard.state)
             return;
 
         fxKeyboard.state = state;
-        fxKeyboard._renderKeyboard();
+        fxKeyboard.redrawButtons();
     },
 
-    _shiftLock: false,
-    pressShift: function () {
-        var state = fxKeyboard.state;
 
-        if (fxKeyboard._shiftLock) {
-            fxKeyboard._shiftLock = false;
-            fxKeyboard._setKeyActive('shift', 0);
-            state = (state === 3) ? 2 : 0;
-        } else {
-            switch (fxKeyboard.state) {
-                case 0:
-                    // nothing is on, enable single use shift
-                    state = 1;
-                    fxKeyboard._setKeyActive('shift', 1);
-                    break;
-                case 2:
-                    // alt is on, turn on single use alt+shift
-                    state = 3;
-                    fxKeyboard._setKeyActive('shift', 1);
-                    break;
-                case 1:
-                case 3:
-                    // shift is on, lock it
-                    fxKeyboard._shiftLock = true;
-                    fxKeyboard._setKeyActive('shift', 2);
-                    break;
-            }
-        }
-
-        fxKeyboard.setState(state);
-    },
-
-    // shift may be just single use - unpress it if needed
-    _shiftUnpress: function () {
-        if (!fxKeyboard._shiftLock) {
-            if (fxKeyboard.state === 1) {
-                fxKeyboard.setState(0);
-            } else if (fxKeyboard.state === 3) {
-                fxKeyboard.setState(2);
-            } else return;
-            fxKeyboard._setKeyActive('shift', 0);
-        }
-    },
-
-    pressAlt: function () {
-        var state = fxKeyboard.state;
-
-        switch (state) {
-            case 0:
-                // nothing is on, turn on alt
-                state = 2;
-                fxKeyboard._setKeyActive('alt', 1);
-                break;
-            case 2:
-                // alt is on, turn it off
-                state = 0;
-                fxKeyboard._setKeyActive('alt', 0);
-                break;
-            default:
-                // alt-shift is on or shift is on, turn off shift, turn on alt
-                state = 2;
-                fxKeyboard._shiftLock = false;
-                fxKeyboard._setKeyActive('shift', 0);
-                fxKeyboard._setKeyActive('alt', 1);
-        }
-        fxKeyboard.setState(state);
-    },
-
-    // toggle button classes, we dont need a redraw for this
+    // toggle button classes
     _setKeyActive: function (keyClass, state) {
         // 0 not active
         // 1 active
@@ -405,19 +477,26 @@ var fxKeyboard = {
         if (topic != "nsPref:changed")
             return;
 
-
         switch(data)
         {
+            case "main_max_width":
+                fxKeyboard.settings.main_max_width = this.prefs.getCharPref("main_max_width");
+                fxKeyboard.makeButtons();
+                break;
             case "repeat_all":
-                this.settings.repeat_all = this.prefs.getBoolPref("repeat_all");
-                this._renderKeyboard();
+                fxKeyboard.settings.repeat_all = this.prefs.getBoolPref("repeat_all");
+                fxKeyboard.redrawButtons();
                 break;
             case "key_height":
-                this.settings.key_height = this.prefs.getCharPref("key_height");
-                fxKeyboard.makeKeyboard(fxKeyboard.settings.locale_picker[fxKeyboard.locale]);
+                fxKeyboard.settings.key_height = this.prefs.getCharPref("key_height");
+                fxKeyboard.makeButtons();
+                break;
+            default:
+                fxKeyboard._processSettings();
                 break;
         }
     },
+
     shutDown: function () {
         this.prefs.removeObserver("", this);
     }
