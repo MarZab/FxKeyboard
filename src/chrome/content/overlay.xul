@@ -19,6 +19,15 @@
         </vbox>
     </hbox>
 
+    <toolbarpalette id="BrowserToolbarPalette">
+        <toolbarbutton id="fxkeyboard-tb-switch"
+                       class="toolbarbutton-1"
+                       label="FxKeyboard Switch"
+                       tooltiptext="Open/Switch FxKeyboard Layout"
+                       image="chrome://fxkeyboard/content/images/keyboard.svg"
+                       oncommand="fxKeyboard.pressToolbarButton()"/>
+    </toolbarpalette>
+
     <script type="application/x-javascript" src="chrome://fxkeyboard/content/locales.js"/>
     <script type="application/x-javascript" src="chrome://fxkeyboard/content/overlay.js"/>
 

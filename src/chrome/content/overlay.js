@@ -28,9 +28,15 @@ var fxKeyboard = {
 
     },
 
+    // on page change/load
+    DOMContentLoaded: function () {
+        fxKeyboard.tempOpen = false;
+    },
+
     _processSettings: function () {
 
         fxKeyboard.settings.repeat_all = fxKeyboard.prefs.getBoolPref("repeat_all");
+        fxKeyboard.settings.keep_closed = fxKeyboard.prefs.getBoolPref("keep_closed");
         fxKeyboard.settings.key_height = this.prefs.getCharPref("key_height");
         fxKeyboard.settings.main_max_width = this.prefs.getCharPref("main_max_width");
 
@@ -47,6 +53,7 @@ var fxKeyboard = {
 
     settings: {
         repeat_all: true,
+        keep_closed: false,
         locale_default: 'en',
         key_height: '40',
         main_max_width: '1600px',
@@ -127,29 +134,25 @@ var fxKeyboard = {
             fxKeyboard._dispatchAltKey(8);
         },
         'keepOpen': function () {
-
             fxKeyboard.toogleKeepOpen();
-
-            if (fxKeyboard.keepOpen) {
-                fxKeyboard._setKeyActive('keepOpen', 0);
-                fxKeyboard.keepOpen = false;
-            } else {
-                fxKeyboard._setKeyActive('keepOpen', 1);
-                fxKeyboard._setOpen(true);
-                fxKeyboard.keepOpen = true;
-            }
         },
         'toggleLocale': function () {
-            var locale = fxKeyboard.settings.locale_picker.indexOf(fxKeyboard.locale.locale);
-            locale++;
-            if (locale > fxKeyboard.settings.locale_picker.length -1) {
-                locale = 0;
-            }
-            fxKeyboard.switchLocale(fxKeyboard.settings.locale_picker[locale]);
+            fxKeyboard.switchLocale();
         }
     },
 
     switchLocale: function (l) {
+
+        if (!l) {
+            // next one
+            l = fxKeyboard.settings.locale_picker.indexOf(fxKeyboard.locale.locale);
+            l++;
+            if (l > fxKeyboard.settings.locale_picker.length -1) {
+                l = 0;
+            }
+            l = fxKeyboard.settings.locale_picker[l];
+        }
+
         var locale = FxKeyboardLocales[l];
         if (!locale  || locale === fxKeyboard.locale) return;
 
@@ -195,6 +198,8 @@ var fxKeyboard = {
      */
     state: 0,
     keepOpen: false,
+    // temporaraly open, or switch locales
+    tempOpen: false,
 
     // when a HTML element gets focus
     onFocus: function () {
@@ -228,6 +233,8 @@ var fxKeyboard = {
         if (fxKeyboard.keepOpen == true) {
             // keep kb open regardless
             open = true;
+        } else if (fxKeyboard.settings.keep_closed && !fxKeyboard.tempOpen) {
+            open = false;
         }
         fxKeyboard.focus = focus;
         fxKeyboard._setOpen(open);
@@ -470,6 +477,15 @@ var fxKeyboard = {
         }
     },
 
+    pressToolbarButton: function () {
+        if (fxKeyboard.tempOpen) {
+            fxKeyboard.switchLocale();
+        } else {
+            fxKeyboard.tempOpen = true;
+            fxKeyboard._setOpen(true);
+        }
+    },
+
 
     // settings
     observe: function(subject, topic, data)
@@ -486,6 +502,9 @@ var fxKeyboard = {
             case "repeat_all":
                 fxKeyboard.settings.repeat_all = this.prefs.getBoolPref("repeat_all");
                 fxKeyboard.redrawButtons();
+                break;
+            case "keep_closed":
+                fxKeyboard.settings.keep_closed = this.prefs.getBoolPref("keep_closed");
                 break;
             case "key_height":
                 fxKeyboard.settings.key_height = this.prefs.getCharPref("key_height");
@@ -505,5 +524,6 @@ var fxKeyboard = {
 
 window.addEventListener("load", function(e) { fxKeyboard.startUp(); }, false);
 window.addEventListener("unload", function(e) { fxKeyboard.shutDown(); }, false);
+window.addEventListener("DOMContentLoaded", function (e) { fxKeyboard.DOMContentLoaded() }, true);
 
 // END fxKeyboard
