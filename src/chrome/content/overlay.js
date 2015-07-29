@@ -24,6 +24,16 @@ var fxKeyboard = {
         document.addEventListener("focus", this.onFocus, true);
         document.addEventListener("blur", this.onFocus, true);
 
+        document.addEventListener("keypress", function () {
+            if (fxKeyboard.fromInside) {
+                fxKeyboard.fromInside = false;
+                return;
+            }
+            if (!fxKeyboard.keepOpen) {
+                fxKeyboard._setOpen(false);
+            }
+        }, true);
+
         fxKeyboard.switchLocale(fxKeyboard.settings.locale_default);
 
     },
@@ -40,13 +50,17 @@ var fxKeyboard = {
         fxKeyboard.settings.key_height = this.prefs.getCharPref("key_height");
         fxKeyboard.settings.main_max_width = this.prefs.getCharPref("main_max_width");
 
-        var locale_picker = fxKeyboard.prefs.getCharPref("locale_picker");
-        if (locale_picker) {
-            fxKeyboard.settings.locale_picker = locale_picker.split(' ');
-        }
+        fxKeyboard.settings.locale_picker = fxKeyboard.prefs.getCharPref("locale_picker")
+            .split(' ')
+            .filter(function(n){
+                return (n != '' && n != null && FxKeyboardLocales[n]);
+            });
+
         var locale_default = fxKeyboard.prefs.getCharPref("locale_default");
         if (locale_default && fxKeyboard.settings.locale_picker.indexOf(locale_default)) {
             fxKeyboard.settings.locale_default = locale_default;
+        } else {
+            fxKeyboard.settings.locale_default = fxKeyboard.settings.locale_picker[0];
         }
 
     },
@@ -134,7 +148,7 @@ var fxKeyboard = {
             fxKeyboard._dispatchAltKey(8);
         },
         'keepOpen': function () {
-            fxKeyboard.toogleKeepOpen();
+            fxKeyboard.toggleKeepOpen();
         },
         'toggleLocale': function () {
             fxKeyboard.switchLocale();
@@ -160,7 +174,7 @@ var fxKeyboard = {
         fxKeyboard.makeButtons();
     },
 
-    toogleKeepOpen: function (keepOpen) {
+    toggleKeepOpen: function (keepOpen) {
         if (keepOpen !== false && keepOpen !== true) {
             keepOpen = !fxKeyboard.keepOpen;
         }
@@ -198,8 +212,13 @@ var fxKeyboard = {
      */
     state: 0,
     keepOpen: false,
-    // temporaraly open, or switch locales
+    // temporary open, or switch locales
     tempOpen: false,
+    fromInside: false, // key event was from inside
+
+    events: {
+        onFocus: []
+    },
 
     // when a HTML element gets focus
     onFocus: function () {
@@ -208,18 +227,21 @@ var fxKeyboard = {
         var focus = document.commandDispatcher.focusedElement ||
             document.commandDispatcher.focusedWindow.document.activeElement;
         if (focus) {
+
+            var nodeName = focus.nodeName.toLowerCase();
+            var nodeType = focus.type;
+
             // fxKB aware tag
             if (focus.getAttribute('data-fxkeyboard') === 'false') {
                 // todo switch locale
             } else {
-                var nodeName = focus.nodeName.toLowerCase();
+
                 if (nodeName in {
                         'input': '', 'select': '',
                         'option': '', 'textarea': '', 'textbox': ''
                     }) {
                     open = true;
                 } else {
-                    var nodeType = focus.type;
                     if (nodeType && nodeType.toLowerCase() in {
                             'text':'','password':'','url':'','color':'','date':'','datetime':'',
                             'datetime-local':'','email':'','month':'','number':'','range':'',
@@ -229,6 +251,9 @@ var fxKeyboard = {
                     }
                 }
             }
+            fxKeyboard.events.onFocus.forEach(function (f) {
+                open = f(open, focus, nodeName, nodeType);
+            });
         }
         if (fxKeyboard.keepOpen == true) {
             // keep kb open regardless
@@ -313,6 +338,7 @@ var fxKeyboard = {
             locale.side.forEach(function (rowitems) {
                 var row = document.createElementNS(XUL_NS, 'hbox');
                 row.setAttribute('flex', '1');
+                row.classList.add('items'+rowitems.length);
                 rowitems.forEach(function (item) {
                     row.appendChild(createButton(item));
                 });
@@ -344,11 +370,14 @@ var fxKeyboard = {
 
             if (typeof key === 'string') {
 
-                button.label = key;
+                button.label = key.trim();
                 if (fxKeyboard.settings.repeat_all) {
                     button.setAttribute('type', 'repeat');
                 } else {
                     button.removeAttribute('type');
+                }
+                if (key.length > 1) {
+                    button.classList.add('small');
                 }
 
             } else {
@@ -417,6 +446,9 @@ var fxKeyboard = {
     // enter a regular key into a focused element
     _dispatchKey: function (key, target) {
         if (!target) return;
+
+        fxKeyboard.fromInside = true;
+
         var evt = gBrowser.selectedBrowser.contentDocument.createEvent("KeyboardEvent");
         evt.initKeyEvent("keypress", true, true, null, false, false, false, false, 0, key);
         target.dispatchEvent(evt);
@@ -439,6 +471,9 @@ var fxKeyboard = {
     // send a special event to a focused element
     _dispatchAltKey: function (key, target) {
         if (!target) return;
+
+        fxKeyboard.fromInside = true;
+
         var evt = gBrowser.selectedBrowser.contentDocument.createEvent("KeyboardEvent");
         evt.initKeyEvent("keypress", true, true, null, false, false, false, false, key, 0);
         target.dispatchEvent(evt);
@@ -462,7 +497,7 @@ var fxKeyboard = {
         // 0 not active
         // 1 active
         // 2 locked
-        var buttons = document.querySelectorAll('.fxKeyboardButton.'+keyClass);
+        var buttons = document.querySelectorAll('.fxKeyboardButton.'+keyClass+',.toolbarbutton-1.'+keyClass);
         if (buttons.length) {
             [].forEach.call(buttons, function (button) {
                 if (state > 0) {
@@ -478,11 +513,15 @@ var fxKeyboard = {
     },
 
     pressToolbarButton: function () {
-        if (fxKeyboard.tempOpen) {
-            fxKeyboard.switchLocale();
-        } else {
+
+        // open regardless
+        fxKeyboard._setOpen(true);
+
+        if (fxKeyboard.settings.keep_closed && !fxKeyboard.tempOpen) {
+            // locked, unlock this time
             fxKeyboard.tempOpen = true;
-            fxKeyboard._setOpen(true);
+        } else {
+            fxKeyboard.switchLocale();
         }
     },
 
@@ -522,8 +561,11 @@ var fxKeyboard = {
 
 };
 
-window.addEventListener("load", function(e) { fxKeyboard.startUp(); }, false);
-window.addEventListener("unload", function(e) { fxKeyboard.shutDown(); }, false);
-window.addEventListener("DOMContentLoaded", function (e) { fxKeyboard.DOMContentLoaded() }, true);
+window.addEventListener("load", function load() {
+    window.removeEventListener("load", load, false);
+    fxKeyboard.startUp();
+}, false);
+window.addEventListener("unload", fxKeyboard.shutDown, false);
+window.addEventListener("DOMContentLoaded", fxKeyboard.DOMContentLoaded, true);
 
 // END fxKeyboard

@@ -6,7 +6,7 @@ build:
 	@echo "Building '$(VERSION)'  $(FILENAME)..."
 	@cd "src" && 7za a -tzip "$(FILENAME)" *
 	@mv "src/$(FILENAME)" .
-	@7za a -tzip "$(FILENAME)" COPYING README
+	@7za a -tzip "$(FILENAME)" COPYING README.md
 	@echo "Done!"
 
 clean:
