@@ -36,10 +36,26 @@ var fxKeyboard = {
 
         fxKeyboard.switchLocale(fxKeyboard.settings.locale_default);
 
+        var appcontent = document.getElementById("appcontent");
+        if(appcontent){
+            appcontent.addEventListener("DOMContentLoaded", function (aEvent) {
+                fxKeyboard.docSwitch(aEvent.originalTarget, 'dom');
+            }, true);
+        }
+
+        gBrowser.tabContainer.addEventListener("TabSelect", function (aEvent) {
+            fxKeyboard.docSwitch(gBrowser.selectedBrowser.contentDocument, 'tab');
+        }, false);
+
     },
 
     // on page change/load
-    DOMContentLoaded: function () {
+    docSwitch: function (doc, source) {
+
+        if (!doc.hasFocus() && source != 'tab')
+            // not a context switch after all
+            return;
+
         fxKeyboard.tempOpen = false;
     },
 
@@ -52,9 +68,7 @@ var fxKeyboard = {
 
         fxKeyboard.settings.locale_picker = fxKeyboard.prefs.getCharPref("locale_picker")
             .split(' ')
-            .filter(function(n){
-                return (n != '' && n != null && FxKeyboardLocales[n]);
-            });
+            .filter(function(n){ return n != '' && n != null });
 
         var locale_default = fxKeyboard.prefs.getCharPref("locale_default");
         if (locale_default && fxKeyboard.settings.locale_picker.indexOf(locale_default)) {
@@ -143,9 +157,12 @@ var fxKeyboard = {
         'clear': function (e) {
             // emulate select all and clear on field
             // select all text
-            fxKeyboard._dispatchKey(97);
+            //fxKeyboard._dispatchKey(97);
             // backspace
-            fxKeyboard._dispatchAltKey(8);
+            //fxKeyboard._dispatchAltKey(8);
+            if (fxKeyboard.focus && fxKeyboard.focus.value) {
+                fxKeyboard.focus.value = '';
+            }
         },
         'keepOpen': function () {
             fxKeyboard.toggleKeepOpen();
@@ -187,6 +204,7 @@ var fxKeyboard = {
         } else {
             fxKeyboard._setKeyActive('keepOpen', 0);
             fxKeyboard.keepOpen = false;
+            fxKeyboard._setOpen(false);
         }
     },
 
@@ -566,6 +584,6 @@ window.addEventListener("load", function load() {
     fxKeyboard.startUp();
 }, false);
 window.addEventListener("unload", fxKeyboard.shutDown, false);
-window.addEventListener("DOMContentLoaded", fxKeyboard.DOMContentLoaded, true);
+
 
 // END fxKeyboard

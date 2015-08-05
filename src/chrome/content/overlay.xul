@@ -25,7 +25,8 @@
                        label="FxKeyboard Switch"
                        tooltiptext="Open/Switch FxKeyboard Layout"
                        image="chrome://fxkeyboard/content/images/keyboard.svg"
-                       oncommand="fxKeyboard.pressToolbarButton()"/>
+                       oncommand="fxKeyboard.pressToolbarButton()"
+                />
     </toolbarpalette>
 
     <script type="application/x-javascript" src="chrome://fxkeyboard/content/locales.js"/>
