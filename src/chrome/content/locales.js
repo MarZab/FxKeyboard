@@ -13,15 +13,16 @@ if (typeof FxKeyboardLocales === 'undefined')
 FxKeyboardLocales.en = {
     name: 'English',
     locale: 'en',
+    defaultFlex: 10,
     main: [[
         [{
             'label': "\u21E5",
             special: 'tab',
-            flex: '1',
+            flex: 10,
             class: 'fxKeyboardActionKeys tab',
             'tooltiptext': 'Go to next input'
         }], // tab
-        ['q', 'Q', '1', {label: 'Tab', string: '\t', flex: 1}],
+        ['q', 'Q', '1', {label: 'Tab', string: '\t', flex: 10}],
         ['w', 'W', '2', ''],
         ['e', 'E', '3', ''],
         ['r', 'R', '4', ''],
@@ -31,9 +32,9 @@ FxKeyboardLocales.en = {
         ['i', 'I', '8', ''],
         ['o', 'O', '9', ''],
         ['p', 'P', '0', ''],
-        [{'label': "\u232B", special: 8, flex: '1', type: 'repeat', class: 'fxKeyboardActionKeys backspace'}] // backspace
+        [{'label': "\u232B", special: 8, flex: 10, type: 'repeat', class: 'fxKeyboardActionKeys backspace'}] // backspace
     ], [
-        [{'label': "\u2325", flex: '3', special: 'alt', class: 'fxKeyboardActionKeys alt'}], // alt
+        [{'label': "\u2325", flex: 15, special: 'alt', class: 'fxKeyboardActionKeys alt'}], // alt
         ['a', 'A', '#', '€'],
         ['s', 'S', '$', '£'],
         ['d', 'D', '|', '¥'],
@@ -43,9 +44,9 @@ FxKeyboardLocales.en = {
         ['j', 'J', ')', ''],
         ['k', 'K', '*', '♥'],
         ['l', 'L', '%', '✮'],
-        [{'label': "\u23ce", flex: '3', special: 13, class: 'fxKeyboardActionKeys enter'}] // enter
+        [{'label': "\u23ce", flex: 15, special: 13, class: 'fxKeyboardActionKeys enter'}] // enter
     ], [
-        [{'label': "\u21E7", flex: '5', special: 'shift', class: 'fxKeyboardActionKeys shift'}], // shift / caps
+        [{'label': "\u21E7", flex: 20, special: 'shift', class: 'fxKeyboardActionKeys shift'}], // shift / caps
         ['z', 'Z', '\'', ''],
         ['x', 'X', '"', ''],
         ['c', 'C', '/', '['],
@@ -65,7 +66,7 @@ FxKeyboardLocales.en = {
             class: 'fxKeyboardActionKeys toggleLocale narrow',
             'tooltiptext': 'Toggle locale'
         }], // keep open
-        [{'label': "", flex: '2', char: 32}], // space
+        [{'label': "", flex: '50', char: 32}], // space
         [{
             'label': "\uD83D\uDD12",
             special: 'keepOpen',
@@ -79,15 +80,16 @@ FxKeyboardLocales.en = {
 FxKeyboardLocales.de = {
     name: 'Deutsch',
     locale: 'de',
+    defaultFlex: 10,
     main: [[
         [{
             'label': "\u21E5",
             special: 'tab',
-            flex: '1',
+            flex: 10,
             class: 'fxKeyboardActionKeys tab',
             'tooltiptext': 'Go to next input'
         }], // tab
-        ['q', 'Q', '1', {label: 'Tab', string: '\t', flex: 1}],
+        ['q', 'Q', '1', {label: 'Tab', string: '\t', flex: 10}],
         ['w', 'W', '2', ''],
         ['e', 'E', '3', ''],
         ['r', 'R', '4', ''],
@@ -99,9 +101,9 @@ FxKeyboardLocales.de = {
         ['p', 'P', '0', ''],
         ['ü', 'Ü', '', ''],
         ['ß', 'ẞ', '', ''],
-        [{'label': "\u232B", special: 8, flex: '1', type: 'repeat', class: 'fxKeyboardActionKeys backspace'}] // backspace
+        [{'label': "\u232B", special: 8, flex: 10, type: 'repeat', class: 'fxKeyboardActionKeys backspace'}] // backspace
     ], [
-        [{'label': "\u2325", flex: '3', special: 'alt', class: 'fxKeyboardActionKeys alt'}], // alt
+        [{'label': "\u2325", flex: 15, special: 'alt', class: 'fxKeyboardActionKeys alt'}], // alt
         ['a', 'A', '#', '€'],
         ['s', 'S', '$', '£'],
         ['d', 'D', '|', '¥'],
@@ -113,9 +115,9 @@ FxKeyboardLocales.de = {
         ['l', 'L', '%', '✮'],
         ['ö', 'Ö', '', ''],
         ['ä', 'Ä', '', ''],
-        [{'label': "\u23ce", flex: '3', special: 13, class: 'fxKeyboardActionKeys enter'}] // enter
+        [{'label': "\u23ce", flex: 15, special: 13, class: 'fxKeyboardActionKeys enter'}] // enter
     ], [
-        [{'label': "\u21E7", flex: '5', special: 'shift', class: 'fxKeyboardActionKeys shift'}], // shift / caps
+        [{'label': "\u21E7", flex: 20, special: 'shift', class: 'fxKeyboardActionKeys shift'}], // shift / caps
         ['y', 'Y', '\'', ''],
         ['x', 'X', '"', ''],
         ['c', 'C', '/', '['],
@@ -134,15 +136,16 @@ FxKeyboardLocales.de = {
 FxKeyboardLocales.da = {
     name: 'Dansk',
     locale: 'da',
+    defaultFlex: 10,
     main: [[
         [{
             'label': "\u21E5",
             special: 'tab',
-            flex: '1',
+            flex: 10,
             class: 'fxKeyboardActionKeys tab',
             'tooltiptext': 'Go to next input'
         }], // tab
-        ['q', 'Q', '1', {label: 'Tab', string: '\t', flex: 1}],
+        ['q', 'Q', '1', {label: 'Tab', string: '\t', flex: 10}],
         ['w', 'W', '2', ''],
         ['e', 'E', '3', ''],
         ['r', 'R', '4', ''],
@@ -153,9 +156,9 @@ FxKeyboardLocales.da = {
         ['o', 'O', '9', ''],
         ['p', 'P', '0', ''],
         ['ä', 'Ä', '', ''],
-        [{'label': "\u232B", special: 8, flex: '1', type: 'repeat', class: 'fxKeyboardActionKeys backspace'}] // backspace
+        [{'label': "\u232B", special: 8, flex: 10, type: 'repeat', class: 'fxKeyboardActionKeys backspace'}] // backspace
     ], [
-        [{'label': "\u2325", flex: '3', special: 'alt', class: 'fxKeyboardActionKeys alt'}], // alt
+        [{'label': "\u2325", flex: 15, special: 'alt', class: 'fxKeyboardActionKeys alt'}], // alt
         ['a', 'A', '#', '€'],
         ['s', 'S', '$', '£'],
         ['d', 'D', '|', '¥'],
@@ -167,7 +170,7 @@ FxKeyboardLocales.da = {
         ['l', 'L', '%', '✮'],
         ['æ', 'Æ', '', ''],
         ['ø', 'Ø', '', ''],
-        [{'label': "\u23ce", flex: '3', special: 13, class: 'fxKeyboardActionKeys enter'}] // enter
+        [{'label': "\u23ce", flex: 15, special: 13, class: 'fxKeyboardActionKeys enter'}] // enter
     ],
         FxKeyboardLocales.en.main[2],
         FxKeyboardLocales.en.main[3]
@@ -177,15 +180,16 @@ FxKeyboardLocales.da = {
 FxKeyboardLocales.sl = {
     name: 'South Slavic Latin',
     locale: 'sl',
+    defaultFlex: 10,
     main: [[
         [{
             'label': "\u21E5",
             special: 'tab',
-            flex: '1',
+            flex: 10,
             class: 'fxKeyboardActionKeys tab',
             'tooltiptext': 'Go to next input'
         }], // tab
-        ['q', 'Q', '1', {label: 'Tab', string: '\t', flex: 1}],
+        ['q', 'Q', '1', {label: 'Tab', string: '\t', flex: 10}],
         ['w', 'W', '2', ''],
         ['e', 'E', '3', ''],
         ['r', 'R', '4', ''],
@@ -197,9 +201,9 @@ FxKeyboardLocales.sl = {
         ['p', 'P', '0', ''],
         ['š', 'Š', '', ''],
         ['đ', 'Đ', '', ''],
-        [{'label': "\u232B", special: 8, flex: '1', type: 'repeat', class: 'fxKeyboardActionKeys backspace'}] // backspace
+        [{'label': "\u232B", special: 8, flex: 10, type: 'repeat', class: 'fxKeyboardActionKeys backspace'}] // backspace
     ], [
-        [{'label': "\u2325", flex: '3', special: 'alt', class: 'fxKeyboardActionKeys alt'}], // alt
+        [{'label': "\u2325", flex: 15, special: 'alt', class: 'fxKeyboardActionKeys alt'}], // alt
         ['a', 'A', '#', '€'],
         ['s', 'S', '$', '£'],
         ['d', 'D', '|', '¥'],
@@ -212,9 +216,9 @@ FxKeyboardLocales.sl = {
         ['č', 'Č', '', ''],
         ['ć', 'Ć', '', ''],
         ['ž', 'Ž', '', ''],
-        [{'label': "\u23ce", flex: '3', special: 13, class: 'fxKeyboardActionKeys enter'}] // enter
+        [{'label': "\u23ce", flex: 15, special: 13, class: 'fxKeyboardActionKeys enter'}] // enter
     ], [
-        [{'label': "\u21E7", flex: '5', special: 'shift', class: 'fxKeyboardActionKeys shift'}], // shift / caps
+        [{'label': "\u21E7", flex: 20, special: 'shift', class: 'fxKeyboardActionKeys shift'}], // shift / caps
         ['y', 'Y', '\'', ''],
         ['x', 'X', '"', ''],
         ['c', 'C', '/', '['],

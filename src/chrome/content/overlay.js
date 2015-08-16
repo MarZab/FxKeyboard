@@ -298,7 +298,7 @@ var fxKeyboard = {
             var button = document.createElementNS(XUL_NS, 'button');
 
             // style
-            button.setAttribute('flex', item.flex || '1');
+            button.setAttribute('flex', locale.defaultFlex || '1');
             button.classList.add("fxKeyboardButton");
 
             if (fxKeyboard.settings.key_height) {
@@ -401,6 +401,10 @@ var fxKeyboard = {
             } else {
 
                 button.label = key.label;
+
+                if (key.flex) {
+                    button.setAttribute('flex', key.flex);
+                }
 
                 if (key.image) {
                     button.image = key.image;
