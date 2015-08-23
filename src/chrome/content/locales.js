@@ -62,15 +62,15 @@ FxKeyboardLocales.en = {
         [{
             'label': "\uD83C\uDF10",
             special: 'toggleLocale',
-            flex: '1',
+            flex: 10,
             class: 'fxKeyboardActionKeys toggleLocale narrow',
             'tooltiptext': 'Toggle locale'
         }], // keep open
-        [{'label': "", flex: '50', char: 32}], // space
+        [{'label': "", flex: 50, char: 32}], // space
         [{
             'label': "\uD83D\uDD12",
             special: 'keepOpen',
-            flex: '1',
+            flex: 10,
             class: 'fxKeyboardActionKeys keepOpen narrow',
             'tooltiptext': 'Keep open'
         }] // keep open
@@ -233,4 +233,75 @@ FxKeyboardLocales.sl = {
     ],
         FxKeyboardLocales.en.main[3]
     ]
+};
+
+
+FxKeyboardLocales.ru = {
+    name: 'Russian',
+    locale: 'ru',
+    defaultFlex: 10,
+    main: [[
+        [{
+            'label': "\u21E5",
+            special: 'tab',
+            flex: 10,
+            class: 'fxKeyboardActionKeys tab',
+            'tooltiptext': 'Перейти к следующему'
+        }], // tab
+        ['й', 'Й', '1', {label: 'Tab', string: '\t', flex: 10}],
+        ['ц', 'Ц', '2', ''],
+        ['у', 'У', '3', ''],
+        ['к', 'К', '4', ''],
+        ['е', 'Е', '5', ''],
+        ['н', 'Н', '6', ''],
+        ['г', 'Г', '7', ''],
+        ['ш', 'Ш', '8', ''],
+        ['щ', 'Щ', '9', ''],
+        ['з', 'З', '0', ''],
+        ['х', 'Х', '', ''],
+        ['ъ', 'Ъ', '', ''],
+        [{'label': "\u232B", special: 8, flex: 10, type: 'repeat', class: 'fxKeyboardActionKeys backspace'}] // backspace
+    ], [
+        [{'label': "\u2325", flex: 15, special: 'alt', class: 'fxKeyboardActionKeys alt'}], // alt
+        ['ф', 'Ф', '#', '€'],
+        ['ы', 'Ы', '$', '£'],
+        ['в', 'В', '|', '¥'],
+        ['а', 'А', '^', '¤'],
+        ['п', 'П', '&', '~'],
+        ['р', 'Р', '(', '`'],
+        ['о', 'О', ')', ''],
+        ['л', 'Л', '*', '♥'],
+        ['д', 'Д', '%', '✮'],
+        ['ж', 'Ж', '', ''],
+        ['э', 'Э', '', ''],
+        [{'label': "\u23ce", flex: 15, special: 13, class: 'fxKeyboardActionKeys enter'}] // enter
+    ], [
+        [{'label': "\u21E7", flex: 20, special: 'shift', class: 'fxKeyboardActionKeys shift'}], // shift / caps
+        ['я', 'Я', '\'', ''],
+        ['ч', 'Ч', '"', ''],
+        ['с', 'С', '/', '['],
+        ['м', 'М', '\\', ']'],
+        ['и', 'И', '<', '{'],
+        ['т', 'Т', '>', '}'],
+        ['ь', 'Ь', '+', ''],
+        ['б', 'Б', '-', ''],
+        ['ю', 'Ю', '×', ''],
+        ['.', '.', '÷', '¡'],
+    ], [
+        [{
+            'label': "\uD83C\uDF10",
+            special: 'toggleLocale',
+            flex: 10,
+            class: 'fxKeyboardActionKeys toggleLocale narrow',
+            'tooltiptext': 'Переключить локаль'
+        }], // keep open
+        [{'label': "", flex: 50, char: 32}], // space
+        [{
+            'label': "\uD83D\uDD12",
+            special: 'keepOpen',
+            flex: 10,
+            class: 'fxKeyboardActionKeys keepOpen narrow',
+            'tooltiptext': 'Оставить открытым'
+        }] // keep open
+    ]]
 };
