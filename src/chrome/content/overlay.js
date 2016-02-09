@@ -254,6 +254,10 @@ var fxKeyboard = {
                 // todo switch locale
             } else {
 
+                if (focus.isContentEditable) {
+                    open = true;
+                }
+
                 if (nodeName in {
                         'input': '', 'select': '',
                         'option': '', 'textarea': '', 'textbox': ''
