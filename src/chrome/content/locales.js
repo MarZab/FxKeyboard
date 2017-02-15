@@ -203,6 +203,148 @@ FxKeyboardLocales.da = {
     ]]
 };
 
+FxKeyboardLocales.no = {
+    name: 'Norsk',
+    locale: 'no',
+    defaultFlex: 10,
+    main: [[
+        [{
+            'label': "\u21E5",
+            special: 'tab',
+            flex: 10,
+            class: 'fxKeyboardActionKeys tab',
+            'tooltiptext': 'Go to next input'
+        }], // tab
+        ['q', 'Q', '1', {label: 'Tab', string: '\t', flex: 10}],
+        ['w', 'W', '2', ''],
+        ['e', 'E', '3', ''],
+        ['r', 'R', '4', ''],
+        ['t', 'T', '5', ''],
+        ['y', 'Y', '6', ''],
+        ['u', 'U', '7', ''],
+        ['i', 'I', '8', ''],
+        ['o', 'O', '9', ''],
+        ['p', 'P', '0', ''],
+        ['å', 'Å', '', ''],
+        [{'label': "\u232B", special: 8, flex: 10, type: 'repeat', class: 'fxKeyboardActionKeys backspace'}] // backspace
+    ], [
+        [{'label': "\u2325", flex: 15, special: 'alt', class: 'fxKeyboardActionKeys alt'}], // alt
+        ['a', 'A', '#', '€'],
+        ['s', 'S', '$', '£'],
+        ['d', 'D', '|', '¥'],
+        ['f', 'F', '^', '¤'],
+        ['g', 'G', '&', '~'],
+        ['h', 'H', '(', '`'],
+        ['j', 'J', ')', ''],
+        ['k', 'K', '*', '♥'],
+        ['l', 'L', '%', '✮'],
+        ['ø', 'Ø', '', ''],
+        ['æ', 'Æ', '', ''],
+        [{'label': "\u23ce", flex: 15, special: 13, class: 'fxKeyboardActionKeys enter'}] // enter
+    ], [
+        [{'label': "\u21E7", flex: 20, special: 'shift', class: 'fxKeyboardActionKeys shift'}], // shift / caps
+        ['z', 'Z', '\'', ''],
+        ['x', 'X', '"', ''],
+        ['c', 'C', '/', '['],
+        ['v', 'V', '\\', ']'],
+        ['b', 'B', '<', '{'],
+        ['n', 'N', '>', '}'],
+        ['m', 'M', '+', ''],
+        [',', ';', '-', ''],
+        ['.', ':', '×', ''],
+        ['?', '!', '÷', '¡'],
+        ['@', '_', '=', '¿']
+    ], [
+        [{
+            'label': "\uD83C\uDF10",
+            special: 'toggleLocale',
+            flex: 10,
+            class: 'fxKeyboardActionKeys toggleLocale narrow',
+            'tooltiptext': 'Toggle locale'
+        }], // keep open
+        [{'label': "", flex: 50, char: 32}], // space
+        [{
+            'label': "\uD83D\uDD12",
+            special: 'keepOpen',
+            flex: 10,
+            class: 'fxKeyboardActionKeys keepOpen narrow',
+            'tooltiptext': 'Keep open'
+        }] // keep open
+    ]]
+};
+
+
+FxKeyboardLocales.sv = {
+    name: 'Svenska',
+    locale: 'sv',
+    defaultFlex: 10,
+    main: [[
+        [{
+            'label': "\u21E5",
+            special: 'tab',
+            flex: 10,
+            class: 'fxKeyboardActionKeys tab',
+            'tooltiptext': 'Go to next input'
+        }], // tab
+        ['q', 'Q', '1', {label: 'Tab', string: '\t', flex: 10}],
+        ['w', 'W', '2', ''],
+        ['e', 'E', '3', ''],
+        ['r', 'R', '4', ''],
+        ['t', 'T', '5', ''],
+        ['y', 'Y', '6', ''],
+        ['u', 'U', '7', ''],
+        ['i', 'I', '8', ''],
+        ['o', 'O', '9', ''],
+        ['p', 'P', '0', ''],
+        ['å', 'Å', '', ''],
+        [{'label': "\u232B", special: 8, flex: 10, type: 'repeat', class: 'fxKeyboardActionKeys backspace'}] // backspace
+    ], [
+        [{'label': "\u2325", flex: 15, special: 'alt', class: 'fxKeyboardActionKeys alt'}], // alt
+        ['a', 'A', '#', '€'],
+        ['s', 'S', '$', '£'],
+        ['d', 'D', '|', '¥'],
+        ['f', 'F', '^', '¤'],
+        ['g', 'G', '&', '~'],
+        ['h', 'H', '(', '`'],
+        ['j', 'J', ')', ''],
+        ['k', 'K', '*', '♥'],
+        ['l', 'L', '%', '✮'],
+        ['ö', 'Ö', '', ''],
+        ['ä', 'Ä', '', ''],
+        [{'label': "\u23ce", flex: 15, special: 13, class: 'fxKeyboardActionKeys enter'}] // enter
+    ], [
+        [{'label': "\u21E7", flex: 20, special: 'shift', class: 'fxKeyboardActionKeys shift'}], // shift / caps
+        ['z', 'Z', '\'', ''],
+        ['x', 'X', '"', ''],
+        ['c', 'C', '/', '['],
+        ['v', 'V', '\\', ']'],
+        ['b', 'B', '<', '{'],
+        ['n', 'N', '>', '}'],
+        ['m', 'M', '+', ''],
+        [',', ';', '-', ''],
+        ['.', ':', '×', ''],
+        ['?', '!', '÷', '¡'],
+        ['@', '_', '=', '¿']
+    ], [
+        [{
+            'label': "\uD83C\uDF10",
+            special: 'toggleLocale',
+            flex: 10,
+            class: 'fxKeyboardActionKeys toggleLocale narrow',
+            'tooltiptext': 'Toggle locale'
+        }], // keep open
+        [{'label': "", flex: 50, char: 32}], // space
+        [{
+            'label': "\uD83D\uDD12",
+            special: 'keepOpen',
+            flex: 10,
+            class: 'fxKeyboardActionKeys keepOpen narrow',
+            'tooltiptext': 'Keep open'
+        }] // keep open
+    ]]
+};
+
+
 FxKeyboardLocales.sl = {
     name: 'South Slavic Latin',
     locale: 'sl',
