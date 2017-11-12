@@ -331,3 +331,75 @@ FxKeyboardLocales.ru = {
         }] // keep open
     ]]
 };
+
+FxKeyboardLocales.es = {
+    name: 'Español',
+    locale: 'es',
+    defaultFlex: 10,
+    main: [[
+        [{
+            'label': "\u21E5",
+            special: 'tab',
+            flex: 10,
+            class: 'fxKeyboardActionKeys tab',
+            'tooltiptext': 'Go to next input'
+        }], // tab
+        ['q', 'Q', '1', '°'],
+        ['w', 'W', '2', '©'],
+        ['e', 'E', '3', '®'],
+        ['r', 'R', '4', '¼'],
+        ['t', 'T', '5', '½'],
+        ['y', 'Y', '6', '¾'],
+        ['u', 'U', '7', '#'],
+        ['i', 'I', '8', '%'],
+        ['o', 'O', '9', '&'],
+        ['p', 'P', '0', 'ø'],
+        ['!', '¡', '=', 'π'],
+        ['?', '¿', '#', '√'],
+        [{'label': "\u232B", special: 8, flex: 10, type: 'repeat', class: 'fxKeyboardActionKeys backspace'}] // backspace
+    ], [
+        [{'label': "123#", flex: 15, special: 'alt', class: 'fxKeyboardActionKeys alt'}], // alt
+        ['a', 'A', 'á', 'Á'],
+        ['s', 'S', 'é', 'É'],
+        ['d', 'D', 'í', 'Í'],
+        ['f', 'F', 'ó', 'Ó'],
+        ['g', 'G', 'ú', 'Ú'],
+        ['h', 'H', '', ''],
+        ['j', 'J', '&', '$'],
+        ['k', 'K', '(', '€'],
+        ['l', 'L', ')', '£'],
+        ['ñ', 'Ñ', 'ü', 'Ü'],
+        ['ç', 'Ç', '"', '~'],
+        
+        [{'label': "\u23ce", flex: 15, special: 13, class: 'fxKeyboardActionKeys enter'}] // enter
+    ], [
+        [{'label': "\u21E7", flex: 20, special: 'shift', class: 'fxKeyboardActionKeys shift'}], // shift / caps
+        ['z', 'Z', '<', '≡'],
+        ['x', 'X', '>', '±'],
+        ['c', 'C', '+', '['],
+        ['v', 'V', '-', ']'],
+        ['b', 'B', '*', '{'],
+        ['n', 'N', '÷', '}'],
+        ['m', 'M', '=', '¢'],
+        [',', ';', '^', '¥'],
+        ['.', ':', '/', '.'],
+        ['-', '_', '\\', 'µ'],
+        ['@', '\'', '|', '@']
+    ], [
+        [{
+            'label': "\uD83C\uDF10",
+            special: 'toggleLocale',
+            flex: 10,
+            class: 'fxKeyboardActionKeys toggleLocale narrow',
+            'tooltiptext': 'Toggle locale'
+        }], // keep open
+        [{'label': "", flex: 50, char: 32}], // space
+        [{
+            'label': "\uD83D\uDD12",
+            special: 'keepOpen',
+            flex: 10,
+            class: 'fxKeyboardActionKeys keepOpen narrow',
+            'tooltiptext': 'Keep open'
+        }] // keep open
+    ]]
+};
